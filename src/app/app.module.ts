@@ -4,15 +4,17 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { RegisterComponent } from './register/register.component';
+import { DisplayProductsComponent } from './display-products/display-products.component';
+import { DisplayProductComponent } from './display-product/display-product.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    SignupComponent,
-    RegisterComponent
+    RegisterComponent,
+    DisplayProductsComponent,
+    DisplayProductComponent
   ],
   imports: [
     BrowserModule,
