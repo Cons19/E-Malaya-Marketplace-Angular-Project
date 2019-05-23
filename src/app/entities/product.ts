@@ -18,6 +18,11 @@ export enum Type {
 }
 
 export class CartItem {
+    _id: string;
+    quantity: number;
+}
+
+export class FullCartItem {
     item: Product;
     quantity: number;
 }

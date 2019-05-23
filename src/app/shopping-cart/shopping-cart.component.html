@@ -1,4 +1,14 @@
-<div *ngFor="let product of products">
-  <a href="/dummy">{{product.item.name}}</a>
-  <p>Quantity: {{product.quantity}}</p>
-</div>
+<mat-card *ngFor="let cartItem of cartItems" class="cart-item-card">
+  <mat-card-header>
+    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+    <mat-card-title>{{cartItem.item.name}}</mat-card-title>
+    <mat-card-subtitle>{{cartItem.item.user.firstName}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <br>
+  <mat-card-content>
+    <p>
+      Quantity: {{cartItem.quantity}}
+    </p>
+  </mat-card-content>
+</mat-card>
