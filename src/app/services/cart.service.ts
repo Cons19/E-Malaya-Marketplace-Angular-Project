@@ -12,6 +12,7 @@ export class CartService {
     this.cartContents = [];
    }
 
+   
    getContents() : CartItem[] {
      let fullCartContents: CartItem[] = [];
      this.cartContents.forEach(element => {

@@ -21,8 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
-
-
+import { NgReduxModule} from '@angular-redux/store';
 
 @NgModule({
   declarations: [
@@ -48,7 +47,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule,
     MatDividerModule,
     MatProgressBarModule,
-    MatSelectModule
+    MatSelectModule,
+    NgReduxModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
