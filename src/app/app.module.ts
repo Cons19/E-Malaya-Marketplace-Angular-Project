@@ -8,6 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { DisplayProductsComponent } from './display-products/display-products.component';
 import { DisplayProductComponent } from './display-product/display-product.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductService } from './services/product.service';
 import { ProductComponent } from './product/product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,6 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
     DisplayProductsComponent,
     DisplayProductComponent,
     PageNotFoundComponent,
+    ShoppingCartComponent,
+    PageNotFoundComponent,
     ProductComponent
   ],
   imports: [
@@ -46,7 +50,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatProgressBarModule,
     MatSelectModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
