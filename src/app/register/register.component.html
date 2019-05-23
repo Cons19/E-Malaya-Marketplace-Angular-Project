@@ -1,3 +1,148 @@
-<p>
-  register works!
-</p>
+<mat-grid-list cols="4" rowHeight="897px">
+  <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    <mat-card>
+      <mat-card-header>
+        <!--<div mat-card-avatar class="upload-btn-wrapper">
+            <button class="btn"></button>
+            <input type="file" name="myfile" />
+        </div>-->
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Register</mat-card-title>
+        <mat-card-subtitle>Make a new account!</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          
+            <div>
+                <mat-form-field>
+                    <input matInput type="text" formControlName="firstName" placeholder="First Name">
+                </mat-form-field>
+    
+                <div *ngIf="submitted && registerForm.controls.firstName.errors?.required && registerForm.controls.firstName.touched">
+                    You must fill out the first name!
+                </div>
+                <div *ngIf="submitted && registerForm.controls.firstName.errors?.minlength && registerForm.controls.firstName.touched">
+                    The first name must be at least 2 characters length!
+                </div>
+            </div>
+            
+            <div>
+                <mat-form-field>
+                    <input matInput type="text" formControlName="lastName" placeholder="Last Name">
+                </mat-form-field>
+    
+                <div *ngIf="submitted && registerForm.controls.lastName.errors?.required && registerForm.controls.lastName.touched">
+                    You must fill out the last name!
+                </div>
+                <div *ngIf="submitted && registerForm.controls.lastName.errors?.minlength && registerForm.controls.lastName.touched">
+                    The last name must be at least 2 characters length!
+                </div>
+            </div>
+
+            <div>
+                <mat-form-field>
+                  <input matInput type="email" formControlName="email" placeholder="Email">
+                </mat-form-field>
+    
+                <div *ngIf="submitted && registerForm.controls.email.errors?.required && registerForm.controls.email.touched">
+                    You must fill out the email!
+                </div>
+    
+                <div *ngIf="submitted && registerForm.controls.email.errors?.email && registerForm.controls.email.touched">
+                    You must write a correct email!
+                </div>
+              </div>
+    
+              <div>
+                <mat-form-field>
+                  <input matInput type="password" formControlName="password" placeholder="Password">
+                </mat-form-field>
+    
+                <div *ngIf="submitted && registerForm.controls.password.errors?.required && registerForm.controls.password.touched">
+                    You must fill out the password!
+                </div>
+                <div *ngIf="submitted && registerForm.controls.password.errors?.minlength && registerForm.controls.password.touched">
+                    Password must be at least 6 characters length!
+                </div>
+              </div>
+
+              <div>
+                  <mat-form-field>
+                    <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password">
+                  </mat-form-field>
+                  <div *ngIf="submitted && registerForm.controls.confirmPassword.errors?.required && registerForm.controls.confirmPassword.touched">
+                      You must fill out the password!
+                  </div>
+                  <div *ngIf="submitted && registerForm.controls.confirmPassword.errors?.mustMatch && registerForm.controls.confirmPassword.touched">
+                      Passwords must match!
+                  </div>
+                </div>
+
+              <div>
+                  <mat-form-field>
+                      <mat-select formControlName="gender" placeholder="Gender">
+                        <mat-option *ngFor="let gender of gender" [value]="gender.value">
+                          {{gender.viewValue}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+
+                  <div *ngIf="submitted && registerForm.controls.gender.errors?.required && registerForm.controls.gender.touched">
+                      You must choose a gender!
+                  </div>
+              </div>
+
+              <div>
+                  <mat-form-field>
+                    <input matInput type="date" formControlName="birthDate" placeholder="Date of birth">
+                  </mat-form-field>
+      
+                  <div *ngIf="submitted && registerForm.controls.birthDate.errors?.required && registerForm.controls.birthDate.touched">
+                      You must fill out the date of birth!
+                  </div>
+              </div>
+
+              <div>
+                  <mat-form-field>
+                    <input matInput type="number" formControlName="phoneNumber" placeholder="Phone Number">
+                  </mat-form-field>
+      
+                  <div *ngIf="submitted && registerForm.controls.phoneNumber.errors?.required && registerForm.controls.phoneNumber.touched">
+                      You must fill out the phone number!
+                  </div>
+
+                  <div *ngIf="submitted && registerForm.controls.phoneNumber.errors?.pattern && registerForm.controls.phoneNumber.touched">
+                      The phone number must contain only numbers!
+                  </div>
+              </div>
+
+              <div>
+                  <mat-form-field>
+                      <input matInput type="text" formControlName="address" placeholder="Address">
+                  </mat-form-field>
+      
+                  <div *ngIf="submitted && registerForm.controls.address.errors?.required && registerForm.controls.address.touched">
+                      You must fill out the address!
+                  </div>
+                  <div *ngIf="submitted && registerForm.controls.address.errors?.minlength && registerForm.controls.address.touched">
+                      The address must be at least 5 characters length!
+                  </div>
+              </div>
+              
+              <button type="submit" mat-raised-button color="primary">Register</button>
+              <br><br>
+              <mat-card-actions>
+                  <mat-divider></mat-divider>
+                  <br><br>
+                  <mat-card-subtitle>You already have an account?</mat-card-subtitle>
+                  <button type="button" mat-raised-button color="accent" routerLink="../login">Login</button>
+              </mat-card-actions>
+
+          </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+</mat-grid-list>

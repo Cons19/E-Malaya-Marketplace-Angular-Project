@@ -17,3 +17,7 @@ export enum Type {
     Electronics, Fashion, Furniture, Toys
 }
 
+export class CartItem {
+    item: Product;
+    quantity: number;
+}
