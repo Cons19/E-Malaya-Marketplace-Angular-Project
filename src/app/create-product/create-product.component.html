@@ -1,0 +1,26 @@
+<form [formGroup]="createProduct" (ngSubmit)="saveProduct()">
+  <div>
+    <mat-form-field >
+      <input matInput placeholder="Product name" formControlName="name">
+    </mat-form-field>
+    <!-- <mat-form-field >
+      <input matInput placeholder="Product user" formControlName="user">
+    </mat-form-field> -->
+    <mat-form-field >
+      <input matInput placeholder="Product description" formControlName="description">
+    </mat-form-field>
+    <!-- <div formArrayName="price">
+        <input matInput placeholder="Product price" formControlName="value">
+    </div> -->
+    <!-- <div [formGroup]="price"> -->
+      <mat-form-field >
+        <input matInput placeholder="Product price" formControlName="price.value">
+      </mat-form-field>
+    <!-- </div> -->
+    
+  </div>
+  <div>
+    <!-- <button type="button" mat-raised-button color="secondary" (click)="createNewQuestion()">New Question</button> -->
+  </div>
+  <button mat-raised-button color="primary">Save Product</button>
+</form>
