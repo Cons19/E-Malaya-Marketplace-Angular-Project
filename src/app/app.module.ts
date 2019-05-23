@@ -8,6 +8,8 @@ import { RegisterComponent } from './register/register.component';
 import { DisplayProductsComponent } from './display-products/display-products.component';
 import { DisplayProductComponent } from './display-product/display-product.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     RegisterComponent,
     DisplayProductsComponent,
     DisplayProductComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
