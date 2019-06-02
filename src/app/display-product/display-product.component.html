@@ -5,8 +5,7 @@
     <mat-card-title>{{product._id}} {{product.name | uppercase}}</mat-card-title>
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo">
-  <mat-card-subtitle>Created by: {{product.user.firstName}}</mat-card-subtitle>
-  <mat-card-subtitle>Date: {{product.user.birthDate | date: 'dd/MM/yyyy' }}</mat-card-subtitle>
+  <!-- <mat-card-subtitle>Date: {{product.date | date: 'dd/MM/yyyy' }}</mat-card-subtitle> -->
   <mat-card-content>
     <p>Description: {{product.description}}</p>
     <p>Price: {{product.price.value}} </p>

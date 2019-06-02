@@ -27,17 +27,6 @@ export class TempDataService {
       { 
         _id: '1', 
         name: 'First Product',
-        user: {
-          _id: '1',
-          firstName: 'Paul',
-          lastName: 'Panaitescu',
-          email: 'paul@gmail.com',
-          password: 'pass',
-          gender: Gender.Male,
-          birthDate: new Date(2019, 0, 3),
-          phone: 1234567899,
-          address: 'CPH'
-        },
         description: 'Descpription 1',
         price: {
           value: 100,
@@ -47,17 +36,6 @@ export class TempDataService {
       { 
         _id: '2', 
         name: 'Second Product',
-        user: {
-          _id: '2',
-          firstName: 'Paul 2',
-          lastName: 'Panaitescu',
-          email: 'paul@gmail.com',
-          password: 'pass',
-          gender: Gender.Male,
-          birthDate: new Date(2019, 0, 4),
-          phone: 1234567899,
-          address: 'CPH'
-        },
         description: 'Descpription 1',
         price: {
           value: 400,
@@ -67,17 +45,6 @@ export class TempDataService {
       { 
         _id: '3', 
         name: 'Third Product',
-        user: {
-          _id: '2',
-          firstName: 'Paul 2',
-          lastName: 'Panaitescu',
-          email: 'paul@gmail.com',
-          password: 'pass',
-          gender: Gender.Male,
-          birthDate: new Date(2019, 0, 6),
-          phone: 1234567899,
-          address: 'CPH'
-        },
         description: 'Descpription 1234',
         price: {
           value: 2300,
@@ -87,17 +54,6 @@ export class TempDataService {
       { 
         _id: '4', 
         name: 'Third Product 123',
-        user: {
-          _id: '2',
-          firstName: 'Paul 2',
-          lastName: 'Panaitescu',
-          email: 'paul@gmail.com',
-          password: 'pass',
-          gender: Gender.Male,
-          birthDate: new Date(2019, 1, 6),
-          phone: 1234567899,
-          address: 'CPH'
-        },
         description: 'Descpription 123412312 3123 1  f8fsdf sasdfsd gg dsg sdg sdawe gfrs8dfds ',
         price: {
           value: 2300,
@@ -111,17 +67,6 @@ export class TempDataService {
     return { 
       _id: '1', 
       name: 'Title 1',
-      user: {
-        _id: '1',
-        firstName: 'Paul',
-        lastName: 'Panaitescu',
-        email: 'paul@gmail.com',
-        password: 'pass',
-        gender: Gender.Male,
-        birthDate: new Date(2019, 0, 3),
-        phone: 1234567899,
-        address: 'CPH'
-      },
       description: 'Descpription 1',
       price: {
         value: 100,

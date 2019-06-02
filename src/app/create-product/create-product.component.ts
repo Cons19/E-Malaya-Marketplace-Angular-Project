@@ -26,18 +26,7 @@ export class CreateProductComponent implements OnInit {
     // save a user who created this quiz.
     // hardcode a user until we have a proper login.
     let product = this.createProduct.value as Product;
-    product._id = '5';
-    product.user = {  // Hardcoded. We remove when we have a proper login
-      _id: '3',
-      firstName: 'Paul 7',
-      lastName: 'Panaitescu',
-      email: 'paul@gmail.com',
-      password: 'pass',
-      gender: Gender.Male,
-      birthDate: new Date(2019, 1, 6),
-      phone: 1234567899,
-      address: 'CPH',
-    };
+    product._id = '5'
     product.price.currency = 'DKK';
 
     this.productActions.createProduct(product);
@@ -49,7 +38,6 @@ export class CreateProductComponent implements OnInit {
     this.createProduct = this.fb.group({
       _id: [''],
       name: [''],
-      // user: [''],
       description: [''],
       price: {
         value: [''],
