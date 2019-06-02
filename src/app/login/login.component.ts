@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { AdminService } from '../admin/admin.service';
+import { ProductActions } from '../product.actions';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { AdminService } from '../admin/admin.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private adminService: AdminService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private adminService: AdminService, private productActions: ProductActions) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group(
@@ -23,22 +24,26 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    /*console.log(this.loginForm);
-    if(this.loginForm.value.email === 'admin@admin' && this.loginForm.value.password === 'admin123') {
-      console.log("First");
-      this.adminService.login().subscribe(result => {
-      console.log("Third");
-      this.router.navigate(['/create-product']);
-      });
-      console.log("Second");
-    }*/
+    console.log(this.loginForm);
+    
     if(this.loginForm.valid) {
-      console.log("First");
-        this.authService.login().subscribe(result => {
-          console.log("Third");
-          this.router.navigate(['display-products']);
+      this.productActions.setLoggedIn(true);
+      if(this.loginForm.value.email === 'admin@admin' && this.loginForm.value.password === 'admin123') {
+        console.log("First");
+        this.adminService.login().subscribe(result => {
+        console.log("Third");
+        this.router.navigate(['portal/create-product']);
         });
         console.log("Second");
+      }
+      else {
+        console.log("First");
+        this.authService.login().subscribe(result => {
+          console.log("Third");
+          this.router.navigate(['portal/display-products']);
+        });
+        console.log("Second");
+      }
     }
     else {
 

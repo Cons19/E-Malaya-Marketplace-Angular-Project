@@ -26,6 +26,10 @@ import { NgReduxRouterModule, NgReduxRouter } from '@angular-redux/router';
 import { AppState, rootReducer } from './store';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { ProductPipe } from './product.pipe';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { PortalComponent } from './portal/portal.component';
 
 
 @NgModule({
@@ -41,6 +45,10 @@ import { ProductPipe } from './product.pipe';
     CreateProductComponent,
     ProductComponent,
     ProductPipe,
+    HomeComponent,
+    AboutComponent,
+    ContactComponent,
+    PortalComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span>e-malaya Marketplace</span>
+  <button mat-button routerLink="about">About</button>
+  <button mat-button routerLink="contact">Contact</button>
+
+  <span class="example-fill-remaining-space"></span>
+
+  <button mat-button *ngIf="!loggedIn" routerLink="register">Login</button>
+  <button mat-button *ngIf="loggedIn" (click)="onLogoutClick()" >Log out</button>
+</mat-toolbar>
+  
+<router-outlet></router-outlet> 
