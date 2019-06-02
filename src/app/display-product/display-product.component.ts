@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../entities/product';
-import { TempDataService } from '../services/temp-data.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Product} from '../entities/product';
+import {TempDataService} from '../services/temp-data.service';
+import {ActivatedRoute} from '@angular/router';
+import {CartService} from '../services/cart.service';
 
 @Component({
   selector: 'app-display-product',
@@ -12,7 +13,7 @@ export class DisplayProductComponent implements OnInit {
 
   product: Product;
 
-  constructor(private tempData: TempDataService, private route: ActivatedRoute) { }
+  constructor(private tempData: TempDataService, private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit() {
     // this.quiz = this.tempData.getQuiz();
@@ -24,5 +25,9 @@ export class DisplayProductComponent implements OnInit {
     this.product = this.tempData.findProduct(id);
     // Load the product in the html
 
+  }
+
+  addToCart() {
+    this.cartService.addProduct(this.product._id);
   }
 }

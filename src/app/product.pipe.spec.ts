@@ -1,8 +1,8 @@
-import { ProductPipe } from './product.pipe';
+// import { ProductPipe } from './product.pipe';
 
-describe('ProductPipe', () => {
-  it('create an instance', () => {
-    const pipe = new ProductPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+// describe('ProductPipe', () => {
+//   it('create an instance', () => {
+//     const pipe = new ProductPipe();
+//     expect(pipe).toBeTruthy();
+//   });
+// });

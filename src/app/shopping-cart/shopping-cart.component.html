@@ -1,12 +1,13 @@
-<mat-card *ngFor="let cartItem of cartItems" class="cart-item-card">
-  <mat-card-header>
-    <mat-card-title>{{cartItem.item.name}}</mat-card-title>
-  </mat-card-header>
-  <mat-divider></mat-divider>
-  <br>
-  <mat-card-content>
-    <p>
-      Quantity: {{cartItem.quantity}}
-    </p>
-  </mat-card-content>
+<mat-card class="cart-item-card">
+  <mat-card-actions>
+    <button type="button" mat-raised-button color="accent" (click)="refresh()">(Debug)Update</button>
+    <button type="button" mat-raised-button color="accent" (click)="reset()">(Debug)Reset</button>
+  </mat-card-actions>
 </mat-card>
+
+<div *ngFor="let cartItem of cartItems">
+  <app-cart-item
+    [cartItemInput]="cartItem"
+    (cartItemRemoved)="handleItemRemoved($event)"
+  ></app-cart-item>
+</div>
