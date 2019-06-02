@@ -24,10 +24,14 @@ export class CartService {
   }
 
   addProduct(id: string) {
-    this.cartContents.push({
-      _id: id,
-      quantity: 1
-    });
+    const index: number = this.cartContents.findIndex(item => item._id === id);
+    if (index === -1) {
+      this.cartContents.push({
+        _id: id,
+        quantity: 1
+      });
+    }
+    console.log(this.cartContents);
   }
 
   removeProduct(id: string) {
@@ -45,11 +49,11 @@ export class CartService {
   debugCart() {
     this.cartContents = [];
     this.cartContents.push({
-      _id: '1',
+      _id: '-1',
       quantity: 1
     });
     this.cartContents.push({
-      _id: '2',
+      _id: '-2',
       quantity: 10
     });
   }
