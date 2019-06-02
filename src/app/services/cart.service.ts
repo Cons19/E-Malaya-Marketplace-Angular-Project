@@ -49,11 +49,11 @@ export class CartService {
   debugCart() {
     this.cartContents = [];
     this.cartContents.push({
-      _id: '-1',
+      _id: '1',
       quantity: 1
     });
     this.cartContents.push({
-      _id: '-2',
+      _id: '2',
       quantity: 10
     });
   }
