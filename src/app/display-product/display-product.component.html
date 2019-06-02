@@ -1,3 +1,21 @@
-<p>
-  display-product works!
-</p>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{product._id}} {{product.name | uppercase}}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo">
+  <mat-card-subtitle>Created by: {{product.user.firstName}}</mat-card-subtitle>
+  <mat-card-subtitle>Date: {{product.user.birthDate | date: 'dd/MM/yyyy' }}</mat-card-subtitle>
+  <mat-card-content>
+    <p>Description: {{product.description}}</p>
+    <p>Price: {{product.price.value}} </p>
+    <p>Currency: {{product.price.currency | uppercase}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button routerLink="../update-product/{{product._id}}">Update Product</button>
+  </mat-card-actions>
+  <mat-card-actions>
+      <button mat-button routerLink="../shopping-cart-add/{{product._id}}">Add to Cart</button>
+    </mat-card-actions>
+</mat-card>

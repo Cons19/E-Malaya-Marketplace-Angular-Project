@@ -3,7 +3,7 @@ import { User} from './user';
 export class Product {
     _id: string;
     name: string;
-    user: User;
+    user?: User;
     description: string;
     price: Price;
 }

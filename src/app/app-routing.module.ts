@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DisplayProductsComponent } from './display-products/display-products.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { DisplayProductComponent } from './display-product/display-product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   { path: 'login', component: LoginComponent },
+  { path: 'create-product', component: CreateProductComponent },
+  { path: 'display-products', component: DisplayProductsComponent },
+  { path: 'display-product/:id', component:DisplayProductComponent},
 
   { path: '**', component: PageNotFoundComponent }  // wildcard - if no routes matched display this 
 ];
