@@ -2,19 +2,25 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { RegisterComponent } from './register/register.component';
 import { DisplayProductsComponent } from './display-products/display-products.component';
-import { CreateProductComponent } from './create-product/create-product.component';
+import { AuthGuard } from './auth/auth.guard';
 import { DisplayProductComponent } from './display-product/display-product.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   { path: 'login', component: LoginComponent },
-  { path: 'create-product', component: CreateProductComponent },
-  { path: 'display-products', component: DisplayProductsComponent },
+  { path: 'register', component: RegisterComponent},
+  { path: 'display-products', component: DisplayProductsComponent, canActivate: [AuthGuard]},
   { path: 'display-product/:id', component:DisplayProductComponent},
+  { path: 'create-product', component: CreateProductComponent },
 
-  { path: '**', component: PageNotFoundComponent }  // wildcard - if no routes matched display this 
+  { path: 'cart', component: ShoppingCartComponent},
+
+  { path: '**', component: PageNotFoundComponent }  // wildcard - if no routes matched display this
 ];
 
 @NgModule({

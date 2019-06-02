@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../entities/product';
-import { TempDataService } from '../service/temp-data.service';
+import { TempDataService } from '../services/temp-data.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

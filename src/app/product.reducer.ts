@@ -2,7 +2,7 @@ import { ProductState } from './store';
 import { tassign } from 'tassign';
 // import { TempDataService } from './service/temp-data.service';
 import { ProductActions } from './product.actions';
-import { TempDataService } from './service/temp-data.service';
+import { TempDataService } from './services/temp-data.service';
 
 let temp = new TempDataService();
 const INITIAL_STATE: ProductState = {isLoggedIn: false, products: temp.products}

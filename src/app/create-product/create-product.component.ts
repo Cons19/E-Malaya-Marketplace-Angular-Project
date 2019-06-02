@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { ProductActions } from '../product.actions';
 import { FormGroup, FormBuilder, Validators, FormArray, Form } from '@angular/forms';
 import { Gender } from '../entities/user';
-import { TempDataService } from '../service/temp-data.service';
+import { TempDataService } from '../services/temp-data.service';
 // import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms'
 
 @Component({
