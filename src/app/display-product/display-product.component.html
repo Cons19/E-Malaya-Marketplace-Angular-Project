@@ -12,7 +12,9 @@
     <p>Currency: {{product.price.currency | uppercase}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button routerLink="../update-product/{{product._id}}">Update Product</button>
+    <button mat-button routerLink="../../update-product/{{product._id}}">Update Product</button>
+    <!-- <button mat-button routerLink="../display-product/{{productInput._id}}">Show Product</button> -->
+
   </mat-card-actions>
   <mat-card-actions>
       <button mat-button (click)="addToCart()">Add to Cart</button>

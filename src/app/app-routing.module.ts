@@ -13,6 +13,7 @@ import { PortalComponent } from './portal/portal.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminGuard } from './admin/admin.guard';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/login', pathMatch: 'full' },
@@ -27,8 +28,8 @@ const routes: Routes = [
   { path: 'portal', component: PortalComponent, children: [
     { path: 'display-products', component: DisplayProductsComponent, /*canActivate: [AuthGuard]*/},
     { path: 'display-product/:id', component:DisplayProductComponent},
+    { path: 'update-product/:id', component:UpdateProductComponent},
     { path: 'create-product', component: CreateProductComponent, canActivate: [AdminGuard]},
-
     { path: 'cart', component: ShoppingCartComponent},
   ]},
   

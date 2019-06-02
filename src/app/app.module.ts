@@ -39,6 +39,7 @@ import {CreateProductComponent} from './create-product/create-product.component'
 import {ProductPipe} from './product.pipe';
 import {CartItemComponent} from './cart-item/cart-item.component';
 import {ProductService} from './services/product.service';
+import { UpdateProductComponent } from './update-product/update-product.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import {ProductService} from './services/product.service';
     ContactComponent,
     PortalComponent,
     CartItemComponent,
+    UpdateProductComponent,
   ],
   imports: [
     BrowserModule,
