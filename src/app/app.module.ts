@@ -9,7 +9,6 @@ import {DisplayProductsComponent} from './display-products/display-products.comp
 import {DisplayProductComponent} from './display-product/display-product.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
-import {ProductService} from './services/product.service';
 import {ProductComponent} from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -29,16 +28,17 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { PortalComponent } from './portal/portal.component';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
+import {ContactComponent} from './contact/contact.component';
+import {PortalComponent} from './portal/portal.component';
 import {DevToolsExtension, NgRedux, NgReduxModule} from '@angular-redux/store';
 import {NgReduxRouter, NgReduxRouterModule} from '@angular-redux/router';
 import {AppState, rootReducer} from './store';
 import {CreateProductComponent} from './create-product/create-product.component';
 import {ProductPipe} from './product.pipe';
 import {CartItemComponent} from './cart-item/cart-item.component';
+import {ProductService} from './services/product.service';
 
 
 @NgModule({
@@ -73,19 +73,20 @@ import {CartItemComponent} from './cart-item/cart-item.component';
     MatDividerModule,
     MatProgressBarModule,
     MatSelectModule,
-    NgReduxModule, NgReduxRouterModule.forRoot(), BrowserAnimationsModule, 
-    MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatCardModule, MatDividerModule, MatExpansionModule, MatCheckboxModule,
+    NgReduxModule, NgReduxRouterModule.forRoot(), BrowserAnimationsModule,
+    MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
+    MatSnackBarModule, MatCardModule, MatDividerModule, MatExpansionModule, MatCheckboxModule,
 
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
 })
-export class AppModule { 
+export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
-    private devTool: DevToolsExtension,
-    private ngReduxRouter: NgReduxRouter,) {
+              private devTool: DevToolsExtension,
+              private ngReduxRouter: NgReduxRouter, ) {
     // this.ngRedux.configureStore(rootReducer, {});
-    this.ngRedux.configureStore(rootReducer, {}, [],[ devTool.isEnabled() ? devTool.enhancer() : f => f]);
-     ngReduxRouter.initialize(/* args */);  
+    this.ngRedux.configureStore(rootReducer, {}, [], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
+    ngReduxRouter.initialize(/* args */);
   }
 }

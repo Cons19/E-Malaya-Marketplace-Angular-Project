@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Product, Price } from '../entities/product';
-import { Router } from '@angular/router';
-import { ProductActions } from '../product.actions';
-import { FormGroup, FormBuilder, Validators, FormArray, Form } from '@angular/forms';
-import { Gender } from '../entities/user';
-import { TempDataService } from '../services/temp-data.service';
+import {Component, OnInit} from '@angular/core';
+import {Product} from '../entities/product';
+import {Router} from '@angular/router';
+import {ProductActions} from '../product.actions';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ProductService} from '../services/product.service';
+
 // import { REACTIVE_FORM_DIRECTIVES } from '@angular/forms'
 
 @Component({
@@ -19,7 +19,7 @@ export class CreateProductComponent implements OnInit {
   createProduct: FormGroup;
   // createProduct: Form;
 
-  constructor(private fb: FormBuilder, private data: TempDataService,
+  constructor(private fb: FormBuilder, private data: ProductService,
     private router: Router, private productActions: ProductActions) { }
 
   saveProduct() {

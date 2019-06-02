@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {TempDataService} from './temp-data.service';
+import {ProductService} from './product.service';
 import {CartItem, FullCartItem} from '../entities/cart';
 
 @Injectable({
@@ -8,7 +8,7 @@ import {CartItem, FullCartItem} from '../entities/cart';
 export class CartService {
   private cartContents: CartItem[];
 
-  constructor(private productService: TempDataService) {
+  constructor(private productService: ProductService) {
     this.debugCart();
   }
 
@@ -16,7 +16,7 @@ export class CartService {
     const fullCartContents: FullCartItem[] = [];
     this.cartContents.forEach(element => {
       fullCartContents.push({
-        product: this.productService.findProduct(element._id),
+        product: this.productService.getProduct(element._id),
         quantity: element.quantity
       });
     });
