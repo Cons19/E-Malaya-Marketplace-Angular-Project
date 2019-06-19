@@ -26,6 +26,7 @@ export class CreateProductComponent implements OnInit {
     // save a user who created this quiz.
     // hardcode a user until we have a proper login.
     let product = this.createProduct.value as Product;
+    // product.price.value = this.createProduct.price;
     product.price.currency = 'DKK';
 
     this.productService.addProduct(product);
