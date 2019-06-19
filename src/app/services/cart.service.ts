@@ -54,12 +54,13 @@ export class CartService {
 
   debugCart() {
     this.cartContents = [];
+    let products: Product[] = this.productService.getProducts();
     this.cartContents.push({
-      _id: '1',
+      _id: products[0]._id,
       quantity: 1
     });
     this.cartContents.push({
-      _id: '2',
+      _id: products[1]._id,
       quantity: 10
     });
   }
