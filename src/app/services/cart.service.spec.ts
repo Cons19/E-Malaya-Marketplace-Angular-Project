@@ -72,4 +72,13 @@ describe('CartService', () => {
 
     expect(content).toBeUndefined();
   });
+
+  it('should change quantity of a product', function() {
+    const service: CartService = TestBed.get(CartService);
+    const product: FullCartItem = service.getContents()[0];
+    const QTY = 10;
+
+    service.changeQuantity(product.product._id, QTY);
+    expect(service.getContents()[0].quantity).toEqual(QTY);
+  });
 });

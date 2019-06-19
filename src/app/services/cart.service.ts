@@ -16,10 +16,15 @@ export class CartService {
   getContents(): FullCartItem[] {
     const fullCartContents: FullCartItem[] = [];
     this.cartContents.forEach(element => {
+      const product: Product = this.productService.getProduct(element._id);
+      if (product != undefined) {
       fullCartContents.push({
-        product: this.productService.getProduct(element._id),
+        product: product,
         quantity: element.quantity
       });
+      } else {
+        throw new Error("Product not found with id " + element._id);
+      }
     });
     return fullCartContents;
   }
