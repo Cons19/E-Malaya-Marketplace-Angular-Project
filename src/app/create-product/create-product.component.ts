@@ -20,7 +20,7 @@ export class CreateProductComponent implements OnInit {
   // createProduct: Form;
 
   constructor(private fb: FormBuilder, private data: ProductService,
-    private router: Router, private productActions: ProductActions) { }
+    private router: Router, private productActions: ProductActions, private productService: ProductService) { }
 
   saveProduct() {
     // save a user who created this quiz.
@@ -31,7 +31,7 @@ export class CreateProductComponent implements OnInit {
     // product.price.value = this.createProduct.price;
     // product.price.currency = 'DKK';
 
-    this.productActions.createProduct(product);
+    this.productService.addProduct(product);
     // this.data.saveProduct(product);
     this.router.navigate(['../portal/display-products']);
   }

@@ -4,7 +4,9 @@ import {ProductActions} from './product.actions';
 import {ProductService} from './services/product.service';
 
 const productService = new ProductService();
-const INITIAL_STATE: ProductState = {isLoggedIn: false, products: productService.products};
+const INITIAL_STATE: ProductState = {isLoggedIn: false
+  // , products: productService.products
+};
 
 export function productReducer(state: ProductState = INITIAL_STATE, action: any) {
   switch (action.type) {
@@ -17,8 +19,8 @@ export function productReducer(state: ProductState = INITIAL_STATE, action: any)
 //   case ProductActions.GET_PRODUCTS_FAILED:
 //     return tassign(state, {isLoading: false});
 
-    case ProductActions.CREATE_PRODUCT:
-      return tassign(state, {products: [...state.products, action.payload]});
+    // case ProductActions.CREATE_PRODUCT:
+    //   return tassign(state, {products: [...state.products, action.payload]});
 
 //    case ProductActions.UPDATE_PRODUCT:
 //     return 
