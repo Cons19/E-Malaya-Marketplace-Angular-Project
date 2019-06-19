@@ -11,6 +11,5 @@
 <div *ngFor="let product of products | productPipe: userSearch">
   <app-product
     [productInput]="product"
-    (productClicked)="handleProductClicked($event)"
   ></app-product>
 </div>
