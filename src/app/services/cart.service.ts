@@ -38,6 +38,8 @@ export class CartService {
           _id: id,
           quantity: 1
         });
+        console.log("added product to cart: ");
+        console.log(product);
       } else {
         throw new Error('Product does not exist with id ' + id);
       }
