@@ -31,7 +31,7 @@ export class CreateProductComponent implements OnInit {
 
     this.productActions.createProduct(product);
     // this.data.saveProduct(product);
-    this.router.navigate(['/display-products']);
+    this.router.navigate(['../portal/display-products']);
   }
 
   ngOnInit() {
