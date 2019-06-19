@@ -47,4 +47,24 @@ describe('ProductService', () => {
 
     expect(service.getProducts()[0]).toBe(product);
   });
+
+  it('should throw exception when updating invalid product', function() {
+    const service: ProductService = TestBed.get(ProductService);
+
+    const product: Product = {
+      _id: '999',
+      name: 'test product',
+      description: 'test description',
+      price: {
+        value: 99.99,
+        currency: 'DKK'
+      }
+    };
+
+    try {
+      service.updateProduct(product);
+      fail("RangeError not thrown");
+    } catch (e) {
+    }
+  });
 });

@@ -30,6 +30,8 @@ export class ProductService {
     const index: number = this.products.findIndex(thatProduct => thatProduct._id === product._id);
     if (index > -1) {
       this.products.splice(index, 1, product);
+    } else {
+      throw new RangeError("Index out of range: " + index);
     }
   }
 
