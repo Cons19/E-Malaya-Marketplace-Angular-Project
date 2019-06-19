@@ -7,10 +7,10 @@ import {ProductService} from '../services/product.service';
 
 @Component({
   selector: 'app-display-products',
-  templateUrl: './display-products.component.html',
-  styleUrls: ['./display-products.component.css']
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class DisplayProductsComponent implements OnInit {
+export class ProductListComponent implements OnInit {
 
   products: Product[];
   isLoading: boolean;

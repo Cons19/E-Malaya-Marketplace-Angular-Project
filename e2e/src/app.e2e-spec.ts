@@ -1,5 +1,5 @@
-import { AppPage } from './app.po';
-import { browser, logging, element, by } from 'protractor';
+import {AppPage} from './app.po';
+import {browser, by, element, logging} from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -16,17 +16,17 @@ describe('workspace-project App', () => {
   //   expect(loginText).toEqual("Login");
   // });
 
-  // it('2.0: should login with email and password as an user, then show the display-products page', () => {
+  // it('2.0: should login with email and password as an user, then show the product-list page', () => {
   //   browser.get('../home/login');
   //   element(by.id('email')).sendKeys('user@user.com');
   //   browser.sleep(1000); // sleep to 100 miliseconds
   //   element(by.id('password')).sendKeys('pass123');
   //   browser.sleep(1000); // sleep to 100 miliseconds
-  //   element(by.id('loginButton')).click();
+  //   element(by.id('loginButton')).click();undefined
   //   browser.sleep(1000); // sleep to 100 miliseconds
     
   //   // Cleaner way to check that you are in the right place.
-  //   expect(browser.getCurrentUrl()).toContain('/portal/display-products');
+  //   expect(browser.getCurrentUrl()).toContain('/portal/product-list');
   //   browser.sleep(1000); // sleep to 100 miliseconds
   // });
 
@@ -78,7 +78,7 @@ describe('workspace-project App', () => {
     element(by.id('loginButton')).click();
     browser.sleep(1000); // sleep to 100 miliseconds
     
-    expect(browser.getCurrentUrl()).toContain('/portal/create-product');
+    expect(browser.getCurrentUrl()).toContain('/portal/product-create');
     browser.sleep(1000); // sleep to 100 miliseconds
 
     element(by.id('name')).sendKeys('Title of the product 1');
@@ -91,7 +91,7 @@ describe('workspace-project App', () => {
     element(by.id('saveButton')).click();
     browser.sleep(1000); // sleep to 100 miliseconds
 
-    expect(browser.getCurrentUrl()).toContain('/portal/display-products');
+    expect(browser.getCurrentUrl()).toContain('/portal/product-list');
     browser.sleep(1000); // sleep to 100 miliseconds
 
     // TODO: verify if the last product was added (name, desc, price)

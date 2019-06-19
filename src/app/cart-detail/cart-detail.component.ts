@@ -4,10 +4,10 @@ import {FullCartItem} from '../entities/cart';
 
 @Component({
   selector: 'app-shopping-cart',
-  templateUrl: './shopping-cart.component.html',
-  styleUrls: ['./shopping-cart.component.scss']
+  templateUrl: './cart-detail.component.html',
+  styleUrls: ['./cart-detail.component.scss']
 })
-export class ShoppingCartComponent implements OnInit {
+export class CartDetailComponent implements OnInit {
   cartItems: FullCartItem[];
 
   constructor(private cart: CartService) {

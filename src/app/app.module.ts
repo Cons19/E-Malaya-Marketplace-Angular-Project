@@ -5,10 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
-import {DisplayProductsComponent} from './display-products/display-products.component';
-import {DisplayProductComponent} from './display-product/display-product.component';
+import {ProductListComponent} from './product-list/product-list.component';
+import {ProductDetailComponent} from './product-detail/product-detail.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {ShoppingCartComponent} from './shopping-cart/shopping-cart.component';
+import {CartDetailComponent} from './cart-detail/cart-detail.component';
 import {ProductComponent} from './product/product.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -35,11 +35,11 @@ import {PortalComponent} from './portal/portal.component';
 import {DevToolsExtension, NgRedux, NgReduxModule} from '@angular-redux/store';
 import {NgReduxRouter, NgReduxRouterModule} from '@angular-redux/router';
 import {AppState, rootReducer} from './store';
-import {CreateProductComponent} from './create-product/create-product.component';
+import {ProductCreateComponent} from './product-create/product-create.component';
 import {ProductPipe} from './product.pipe';
 import {CartItemComponent} from './cart-item/cart-item.component';
 import {ProductService} from './services/product.service';
-import { UpdateProductComponent } from './update-product/update-product.component';
+import {ProductUpdateComponent} from './product-update/product-update.component';
 
 
 @NgModule({
@@ -47,12 +47,12 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DisplayProductsComponent,
-    DisplayProductComponent,
+    ProductListComponent,
+    ProductDetailComponent,
     PageNotFoundComponent,
-    ShoppingCartComponent,
+    CartDetailComponent,
     PageNotFoundComponent,
-    CreateProductComponent,
+    ProductCreateComponent,
     ProductComponent,
     ProductPipe,
     HomeComponent,
@@ -60,7 +60,7 @@ import { UpdateProductComponent } from './update-product/update-product.componen
     ContactComponent,
     PortalComponent,
     CartItemComponent,
-    UpdateProductComponent,
+    ProductUpdateComponent,
   ],
   imports: [
     BrowserModule,

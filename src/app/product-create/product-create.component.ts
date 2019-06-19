@@ -9,10 +9,10 @@ import {ProductService} from '../services/product.service';
 
 @Component({
   selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.scss']
+  templateUrl: './product-create.component.html',
+  styleUrls: ['./product-create.component.scss']
 })
-export class CreateProductComponent implements OnInit {
+export class ProductCreateComponent implements OnInit {
   // ngOnInit(): void {
   //   throw new Error("Method not implemented.");
   // }
@@ -33,7 +33,7 @@ export class CreateProductComponent implements OnInit {
 
     this.productService.addProduct(product);
     // this.data.saveProduct(product);
-    this.router.navigate(['../portal/display-products']);
+    this.router.navigate(['../portal/product-list']);
   }
 
   ngOnInit() {

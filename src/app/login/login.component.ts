@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../auth/auth.service';
-import { AdminService } from '../admin/admin.service';
-import { ProductActions } from '../product.actions';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AuthService} from '../auth/auth.service';
+import {AdminService} from '../admin/admin.service';
+import {ProductActions} from '../product.actions';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         console.log("First");
         this.adminService.login().subscribe(result => {
         console.log("Third");
-        this.router.navigate(['portal/create-product']);
+        this.router.navigate(['portal/product-create']);
         });
         console.log("Second");
       }
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
         console.log("First");
         this.authService.login().subscribe(result => {
           console.log("Third");
-          this.router.navigate(['portal/display-products']);
+          this.router.navigate(['portal/product-list']);
         });
         console.log("Second");
       }

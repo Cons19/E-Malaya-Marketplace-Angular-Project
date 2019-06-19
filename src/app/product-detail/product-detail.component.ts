@@ -5,11 +5,11 @@ import {ActivatedRoute} from '@angular/router';
 import {CartService} from '../services/cart.service';
 
 @Component({
-  selector: 'app-display-product',
-  templateUrl: './display-product.component.html',
-  styleUrls: ['./display-product.component.scss']
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.scss']
 })
-export class DisplayProductComponent implements OnInit {
+export class ProductDetailComponent implements OnInit {
 
   product: Product;
 
