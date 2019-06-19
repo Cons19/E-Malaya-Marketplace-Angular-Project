@@ -20,16 +20,15 @@ export class CreateProductComponent implements OnInit {
   // createProduct: Form;
 
   constructor(private fb: FormBuilder, private data: ProductService,
-    private router: Router, private productActions: ProductActions) { }
+    private router: Router, private productActions: ProductActions, private productService: ProductService) { }
 
   saveProduct() {
     // save a user who created this quiz.
     // hardcode a user until we have a proper login.
     let product = this.createProduct.value as Product;
-    product._id = '5'
     product.price.currency = 'DKK';
 
-    this.productActions.createProduct(product);
+    this.productService.addProduct(product);
     // this.data.saveProduct(product);
     this.router.navigate(['../portal/display-products']);
   }

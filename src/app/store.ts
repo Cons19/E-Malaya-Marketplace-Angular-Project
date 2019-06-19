@@ -1,12 +1,11 @@
-import { routerReducer } from '@angular-redux/router';
+import {routerReducer} from '@angular-redux/router';
 // import { combineReducers } from 'redux';
-import { combineReducers } from 'redux';
-import { productReducer } from './product.reducer';
-import { Product } from './entities/product';
+import {combineReducers} from 'redux';
+import {productReducer} from './product.reducer';
 
 export class ProductState {
   isLoggedIn: boolean;
-  products: Product[];
+  // products: Product[];
   // isLoading: boolean;
 }
 export class AppState {
