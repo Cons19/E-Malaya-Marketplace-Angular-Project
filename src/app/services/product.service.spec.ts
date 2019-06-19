@@ -4,6 +4,8 @@ import {ProductService} from './product.service';
 import {Product} from '../entities/product';
 
 describe('ProductService', () => {
+  beforeEach(() => TestBed.configureTestingModule({}));
+
   it('should get all products', function() {
     const service: ProductService = TestBed.get(ProductService);
     const products: Product[] = service.getProducts();
