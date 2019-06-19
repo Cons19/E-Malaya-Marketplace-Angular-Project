@@ -69,18 +69,33 @@ describe('workspace-project App', () => {
   // });
 
   it('4.0: should login as admin, then create a product', () => {
-    // then display the create-product page, 
-    browser.get('../home/register');
-    element(by.id('email')).sendKeys('user@user.com');
+    
+    browser.get('../home/login');
+    element(by.id('email')).sendKeys('admin@admin');
     browser.sleep(1000); // sleep to 100 miliseconds
-    element(by.id('password')).sendKeys('pass123');
+    element(by.id('password')).sendKeys('admin123');
     browser.sleep(1000); // sleep to 100 miliseconds
-    element(by.id('registerButton')).click();
+    element(by.id('loginButton')).click();
     browser.sleep(1000); // sleep to 100 miliseconds
     
-    // Cleaner way to check that you are in the right place.
+    expect(browser.getCurrentUrl()).toContain('/portal/create-product');
+    browser.sleep(1000); // sleep to 100 miliseconds
+
+    element(by.id('name')).sendKeys('Title of the product 1');
+    browser.sleep(1000); // sleep to 100 miliseconds
+    element(by.id('description')).sendKeys('Description of the product 1');
+    browser.sleep(1000); // sleep to 100 miliseconds
+    element(by.id('price')).sendKeys('153');
+    browser.sleep(1000); // sleep to 100 miliseconds
+
+    element(by.id('saveButton')).click();
+    browser.sleep(1000); // sleep to 100 miliseconds
+
     expect(browser.getCurrentUrl()).toContain('/portal/display-products');
     browser.sleep(1000); // sleep to 100 miliseconds
+
+    // TODO: verify if the last product was added (name, desc, price)
+
   });
 
   afterEach(async () => {
