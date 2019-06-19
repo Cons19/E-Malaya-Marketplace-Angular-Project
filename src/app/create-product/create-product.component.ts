@@ -26,7 +26,10 @@ export class CreateProductComponent implements OnInit {
     // save a user who created this quiz.
     // hardcode a user until we have a proper login.
     let product = this.createProduct.value as Product;
-    product.price.currency = 'DKK';
+    // let product = this.createProduct as Product;
+    product._id = '5'
+    // product.price.value = this.createProduct.price;
+    // product.price.currency = 'DKK';
 
     this.productService.addProduct(product);
     // this.data.saveProduct(product);
@@ -38,9 +41,10 @@ export class CreateProductComponent implements OnInit {
       _id: [''],
       name: [''],
       description: [''],
-      price: {
-        value: [''],
-      }
+      price: []
+      // price: {
+      //   value: [''],
+      // }
       // price: this.fb.array({
       //   value: [''],
       // }),

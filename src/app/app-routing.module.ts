@@ -27,10 +27,10 @@ const routes: Routes = [
   
   { path: 'portal', component: PortalComponent, children: [
   // { path: 'portal', component: PortalComponent, /*canActivate: [AuthGuard],*/ children: [
-    { path: 'display-products', component: DisplayProductsComponent, canActivate: [AuthGuard] },
-    { path: 'display-product/:id', component:DisplayProductComponent, canActivate: [AuthGuard] },
+    { path: 'display-products', component: DisplayProductsComponent, /*canActivate: [AuthGuard]*/ },
+    { path: 'display-product/:id', component:DisplayProductComponent, /*canActivate: [AuthGuard]*/ },
     { path: 'update-product/:id', component:UpdateProductComponent},
-    { path: 'create-product', component: CreateProductComponent, canActivate: [AdminGuard]},
+    { path: 'create-product', component: CreateProductComponent, /*canActivate: [AdminGuard]*/ },
     { path: 'cart', component: ShoppingCartComponent},
   ]},
   
