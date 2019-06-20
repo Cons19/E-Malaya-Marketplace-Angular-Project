@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
         console.log("First");
         this.adminService.login().subscribe(result => {
         console.log("Third");
-        this.router.navigate(['portal/product-create']);
+        this.router.navigate(['portal/product-list']);
         });
         console.log("Second");
       }
