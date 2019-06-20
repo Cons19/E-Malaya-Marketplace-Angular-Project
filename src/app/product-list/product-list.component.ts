@@ -16,12 +16,18 @@ export class ProductListComponent implements OnInit {
   products$: Observable<Product[]>;
   isLoading: boolean;
   userSearch: string;
+  isAdmin: boolean;
 
   constructor(private ngRedux: NgRedux<AppState>, private productActions: ProductActions, private productService: ProductService) {
   }
 
   ngOnInit() {
     this.products$ = this.productService.getProducts();
+
+    this.ngRedux.select(state => state.products).subscribe(res => {
+      this.isAdmin = res.isAdmin;
+    });
+
   }
 }
 

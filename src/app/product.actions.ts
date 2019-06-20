@@ -7,6 +7,7 @@ export class ProductActions {
 constructor (private ngRedux: NgRedux<AppState>) {} 
 
   static LOG_IN: string = 'LOG_IN'; 
+  static ADMIN: string = 'ADMIN'; 
   // static CREATE_PRODUCT: string = 'CREATE_PRODUCT';
   
   // createProduct(product: Product):void {
@@ -20,6 +21,14 @@ constructor (private ngRedux: NgRedux<AppState>) {}
     this.ngRedux.dispatch({
       type: ProductActions.LOG_IN,
       payload: isLoggedIn
+    })
+  }
+
+  setAdmin(isAdmin: boolean): void {
+    console.log(isAdmin);
+    this.ngRedux.dispatch({
+      type: ProductActions.ADMIN,
+      payload: isAdmin
     })
   }
 }

@@ -29,10 +29,11 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid) {
       this.productActions.setLoggedIn(true);
       if(this.loginForm.value.email === 'admin@admin' && this.loginForm.value.password === 'admin123') {
+        this.productActions.setAdmin(true);
         console.log("First");
         this.adminService.login().subscribe(result => {
         console.log("Third");
-        this.router.navigate(['portal/product-create']);
+        this.router.navigate(['portal/product-list']);
         });
         console.log("Second");
       }

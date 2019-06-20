@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../entities/product';
 import {CartService} from '../services/cart.service';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from '../store';
 
 @Component({
   selector: 'app-product',
@@ -8,13 +10,17 @@ import {CartService} from '../services/cart.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
+  isAdmin: boolean;
 
   @Input() productInput: Product;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private ngRedux: NgRedux<AppState>) {
   }
 
   ngOnInit() {
+    this.ngRedux.select(state => state.products).subscribe(res => {
+      this.isAdmin = res.isAdmin;   
+    })
   }
 
   addToCart() {
