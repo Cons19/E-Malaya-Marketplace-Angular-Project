@@ -19,13 +19,6 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
 
     this.retrieveProduct();
-
-    // Find the product object based on id
-    // this.productService.getProduct(id).then((result)=>{
-    //   this.product =
-    // });
-
-
   }
 
   async retrieveProduct() {
