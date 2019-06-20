@@ -1,3 +1,19 @@
-<p>
-  update-product works!
-</p>
+<form [formGroup]="updateProduct" (ngSubmit)="saveUpdatedProduct()">
+  <div>
+    <mat-form-field >
+      <input id="name" matInput placeholder="Product name" formControlName="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field >
+      <input id="description" matInput placeholder="Product description" formControlName="description">
+    </mat-form-field>
+    <br>
+    <mat-form-field >
+      <input id="price" matInput placeholder="Product price" formControlName="price">
+    </mat-form-field>
+    
+  </div>
+  <div>
+  </div>
+  <button id="updateButton" mat-raised-button color="primary">Update Product</button>
+</form>
