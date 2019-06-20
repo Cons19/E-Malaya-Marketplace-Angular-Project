@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../entities/product';
 import {v4 as uuid} from 'uuid';
+import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
+import {config} from '../app.config';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +11,27 @@ import {v4 as uuid} from 'uuid';
 export class ProductService {
   products: Product[];
 
-  constructor() {
+  constructor(private firestore: AngularFirestore) {
     this.products = this.debugProducts();
   }
 
-  addProduct(product: Product): void {
+  addProduct(product: Product) {
     product._id = uuid();
-    this.products.push(product);
+    // this.products.push(product);
     console.log(this.products);
+    return this.firestore
+        .collection(config.products_endpoint)
+        .add(product);
   }
 
   getProduct(id: string): Product {
     return this.products.find(product => product._id === id);
   }
 
-  getProducts(): Product[] {
-    return this.products;
+  getProducts(): Observable<DocumentChangeAction<Product>[]>{
+    return this.firestore
+      .collection(config.products_endpoint)
+      .snapshotChanges() as Observable<DocumentChangeAction<Product>[]>;
   }
 
   updateProduct(product: Product) {
@@ -31,7 +39,7 @@ export class ProductService {
     if (index > -1) {
       this.products.splice(index, 1, product);
     } else {
-      throw new RangeError("Index out of range: " + index);
+      throw new RangeError('Index out of range: ' + index);
     }
   }
 
