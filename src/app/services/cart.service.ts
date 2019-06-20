@@ -6,6 +6,7 @@ import {Observable} from 'rxjs';
 import {config} from '../app.config';
 import {AngularFirestore} from '@angular/fire/firestore';
 
+const productsPath = 'products';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,11 +24,11 @@ export class CartService {
   }
 
   getContents(): Observable<FullCartItem[]> {
-    const id = this.user._id;
+    const userId = this.user._id;
 
     const cartObservable = new CartObservable(subscriber => {
-      console.log(`retrieving cart for user '${id}'`);
-      (this.getDoc(id).collection('products').valueChanges() as Observable<CartItem[]>)
+      console.log(`retrieving cart for user '${userId}'`);
+      (this.getDoc(userId).collection(productsPath).valueChanges() as Observable<CartItem[]>)
         .subscribe(cartItemsRes => {
 
           console.log(`Retrieved items:`);
@@ -53,22 +54,12 @@ export class CartService {
     return cartObservable;
   }
 
-  addProduct(id: string) {
-    // const index: number = this.cartContents.findIndex(item => item._id === id);
-    // if (index === -1) {
-    //   const product: Product = this.productService.getProduct(id);
-    //   if (product != undefined) {
-    //     this.cartContents.push({
-    //       _id: id,
-    //       quantity: 1
-    //     });
-    //     console.log("added product to cart: ");
-    //     console.log(product);
-    //   } else {
-    //     throw new Error('Product does not exist with id ' + id);
-    //   }
-    // }
-    // console.log(this.cartContents);
+  addProduct(id: string): Promise<void> {
+    const userId = this.user._id;
+
+    let cartDoc = this.getDoc(userId).collection(productsPath).doc<CartItem>(id);
+    const data: CartItem = {_id: id, quantity: 1};
+    return cartDoc.set(data);
   }
 
   removeProduct(id: string) {

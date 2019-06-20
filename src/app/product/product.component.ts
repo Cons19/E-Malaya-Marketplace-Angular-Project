@@ -26,7 +26,10 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addProduct(this.productInput._id);
+    this.cartService.addProduct(this.productInput._id)
+      .then(() => {
+        this.snackBar.open(`'${this.productInput.name}' has been added to cart.`, 'Dismiss', {duration: 2000});
+      });
   }
 
   deleteProduct() {
