@@ -13,7 +13,7 @@ export class ProductService {
   constructor(private db: AngularFirestore) {
   }
 
-  addProduct(product: Product) {
+  addProduct(product: Product): Promise<void> {
     const id = this.db.createId();
     let productDoc = this.getProductDoc(id);
 
@@ -35,7 +35,7 @@ export class ProductService {
       .valueChanges() as Observable<Product[]>;
   }
 
-  updateProduct(product: Product) {
+  updateProduct(product: Product): Promise<void> {
     console.log('updating product');
     console.log(product);
 
