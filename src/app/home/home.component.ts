@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
 
   onLogoutClick() {
     this.productActions.setLoggedIn(false);
+    this.productActions.setAdmin(false);
   }
 
 }

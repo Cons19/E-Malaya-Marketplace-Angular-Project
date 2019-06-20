@@ -1,10 +1,13 @@
 <div>
   <mat-form-field>
-    <input matInput placeholder="Search product" value="" [(ngModel)]="userSearch">
+    <input id="search" matInput placeholder="Search product" value="" [(ngModel)]="userSearch">
   </mat-form-field> 
 </div>
-<div *ngFor="let product of products | productPipe: userSearch">
-  <app-product class="product"
-    [productInput]="product"
-  ></app-product>
+<div class="container">
+  <div *ngFor="let product of products | productPipe: userSearch">
+    <app-product class="product"
+      [productInput]="product"
+    ></app-product>
+  </div>
 </div>
+
