@@ -2,6 +2,8 @@
   <mat-form-field> 
     <input  matInput placeholder="Search product" value="" [(ngModel)]="userSearch">
   </mat-form-field> 
+  <br>
+  <button *ngIf="true" class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
 </div>
 <div class="container">
   <div *ngFor="let product of products | productPipe: userSearch">
