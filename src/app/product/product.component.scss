@@ -3,25 +3,31 @@
     display: inline-block;
     margin: 20px; 
   }
+
+.mat-card-header .mat-card-title {
+  margin-bottom: 12px;
+  margin-top: 8px;
+}
   
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
 
-.buttons button {
-  display: inline;
+.mat-card-image {
+  width: 100%;
+  margin: 20px 0px 20px 0px;
 }
 
-.butoons .showProduct {
-  float: left;
+.mat-card-content {
+  margin-left: 20px;
+  margin-right: 20px;
 }
-.butoons .updateProduct {
-  float: left;
-}
-.butoons .addProduct {
-  float: right;
-}
-.butoons .deleteProduct {
-  float: right;
+
+.example-button-row button,
+.example-button-row a {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
 }

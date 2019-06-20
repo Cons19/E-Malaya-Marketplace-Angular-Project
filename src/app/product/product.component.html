@@ -1,7 +1,8 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title class="name">{{productInput.name | uppercase}}</mat-card-title>
+    <!-- <mat-card-title class="name">{{productInput.name | uppercase}}</mat-card-title> -->
+    <mat-card-title class="name">{{productInput.name}}</mat-card-title>
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo">
   <mat-card-content>
@@ -10,10 +11,8 @@
   </mat-card-content>
   <mat-card-actions class="buttons" > 
     <div class="example-button-row">
-        <button class="showProduct" mat-raised-button color="primary" routerLink="/portal/product-detail/{{productInput._id}}">Show Product</button>
-        <button class="addProduct" mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
-    </div>
-    <div>
+      <button class="showProduct" mat-raised-button color="primary" routerLink="/portal/product-detail/{{productInput._id}}">Show Product</button>
+      <button class="addProduct" mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
       <button *ngIf="true" 
           class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-update/{{productInput._id}}">Update Product</button>
       <button *ngIf="true" 
