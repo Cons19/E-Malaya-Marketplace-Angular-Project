@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../entities/product';
-import {v4 as uuid} from 'uuid';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {config} from '../app.config';
 import {Observable} from 'rxjs';
@@ -15,18 +14,19 @@ export class ProductService {
   }
 
   addProduct(product: Product) {
-    product._id = uuid();
-    console.log(this.products);
-    return this.db
-        .collection(config.products_endpoint)
-        .add(product);
+    const id = this.db.createId();
+    let productDoc = this.db.doc<Product>(config.products_endpoint + '/' + id);
+
+    product._id = id;
+    console.log(product);
+    return productDoc.set(product);
   }
 
-  getProduct(id: string): Observable<Product[]>{
-    console.log("Retrieving product with id " + id);
-    return this.db
-      .collection(config.products_endpoint, ref => ref.where('_id', '==', id))
-      .valueChanges() as Observable<Product[]>;
+  getProduct(id: string): Observable<Product> {
+    console.log('Retrieving product with id ' + id);
+    let productDoc = this.db.doc <Product>(config.products_endpoint + '/' + id);
+
+    return productDoc.valueChanges();
   }
 
   getProducts(): Observable<Product[]>{

@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 })
 export class ProductDetailComponent implements OnInit {
 
-  products$: Observable<Product[]>;
+  product: Observable<Product>;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
 
@@ -31,10 +31,10 @@ export class ProductDetailComponent implements OnInit {
   async retrieveProduct() {
     // Get the id from the url
     const id = this.route.snapshot.paramMap.get('id');
-    let products = <Observable<Product[]>>await this.productService.getProduct(id);
-    console.log("found matching products:");
+    let products = <Observable<Product>>await this.productService.getProduct(id);
+    console.log("found matching product:");
     console.log(products);
-    this.products$ = products;
+    this.product = products;
   }
 
   addToCart() {
