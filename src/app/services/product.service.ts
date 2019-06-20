@@ -8,8 +8,6 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  products: Product[];
-
   constructor(private db: AngularFirestore) {
   }
 
