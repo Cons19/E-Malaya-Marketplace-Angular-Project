@@ -3,8 +3,8 @@
     <input matInput placeholder="Search product" value="" [(ngModel)]="userSearch">
   </mat-form-field> 
 </div>
-<div *ngFor="let product of products | productPipe: userSearch">
+<div *ngFor="let product of products$ | async | productPipe: userSearch">
   <app-product class="product"
-    [productInput]="product"
+    [productInput]="product.payload.doc.data()"
   ></app-product>
 </div>
