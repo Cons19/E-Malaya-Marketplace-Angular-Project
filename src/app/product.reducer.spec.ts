@@ -8,7 +8,7 @@ describe('Product reducer tests', () => {
   it('should set isLoggedIn to true after Logging In', () => {
     // 1.Arrange  2.Act  3.Assert
     // 1.Arrange
-    let startState = {isLoggedIn: undefined};
+    let startState = {isLoggedIn: undefined, isAdmin: undefined};
     deepFreeze(startState);
     let actionObj = {type: ProductActions.LOG_IN, payload: true};
     // 2.Act
@@ -20,7 +20,7 @@ describe('Product reducer tests', () => {
   it('should set isLoggedIn to false after Logging Out', () => {
     // 1.Arrange  2.Act  3.Assert
     // 1.Arrange
-    let startState = {isLoggedIn: undefined};
+    let startState = {isLoggedIn: undefined, isAdmin: undefined};
     deepFreeze(startState);
     let actionObj = {type: ProductActions.LOG_IN, payload: false};
     // 2.Act

@@ -25,6 +25,10 @@ export class ProductService {
   getProducts(): Product[] {
     return this.products;
   }
+  
+  // removeProduct(id: string): Product {
+  //   return this.products.
+  // }
 
   updateProduct(product: Product) {
     const index: number = this.products.findIndex(thatProduct => thatProduct._id === product._id);
