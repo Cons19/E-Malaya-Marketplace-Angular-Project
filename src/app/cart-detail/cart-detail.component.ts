@@ -10,37 +10,13 @@ import {ProductService} from '../services/product.service';
   styleUrls: ['./cart-detail.component.scss']
 })
 export class CartDetailComponent implements OnInit {
-  cartItems: CartObservable;
+  cartItems: Observable<FullCartItem[]>;
 
   constructor(private cartService: CartService, private productService: ProductService) {
   }
 
   ngOnInit() {
-    // this.updateItems();
-    this.cartService.getContents().subscribe(cartItemsRes => {
-
-      console.log(`Retrieved items:`);
-      console.log(cartItemsRes);
-
-      this.cartItems = new CartObservable(subscriber => {
-
-        cartItemsRes.forEach(cartItem => {
-
-          console.log("Retrieving product for cart item:");
-          console.log(cartItem);
-
-          this.productService.getProduct(cartItem._id).subscribe(product => {
-
-            console.log("Added product to cart:");
-            console.log(product);
-
-            this.cartItems.addCartItem({product: product, quantity: cartItem.quantity});
-
-            subscriber.next(this.cartItems.getCart());
-          });
-        });
-      });
-    });
+    this.cartItems = this.cartService.getContents();
   }
 
   handleItemRemoved(cartItem: FullCartItem) {
@@ -63,18 +39,6 @@ export class CartDetailComponent implements OnInit {
 
   private updateItems() {
     // this.cartItems = this.cart.getContents();
-  }
-}
-
-class CartObservable extends Observable<FullCartItem[]> {
-  private fullCartItems: FullCartItem[] = [];
-
-  addCartItem(cartItem: FullCartItem) {
-    this.fullCartItems.push(cartItem);
-  }
-
-  getCart() {
-    return this.fullCartItems;
   }
 }
 

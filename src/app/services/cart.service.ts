@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProductService} from './product.service';
-import {CartItem} from '../entities/cart';
+import {CartItem, FullCartItem} from '../entities/cart';
 import {User} from '../entities/user';
 import {Observable} from 'rxjs';
 import {config} from '../app.config';
@@ -22,29 +22,35 @@ export class CartService {
   constructor(private db: AngularFirestore, private productService: ProductService) {
   }
 
-  getContents(): Observable<CartItem[]> {
+  getContents(): Observable<FullCartItem[]> {
     const id = this.user._id;
-    console.log(`retrieving cart for user '${id}'`);
-    return this.getDoc(id)
-      .collection('products').valueChanges() as Observable<CartItem[]>;
 
-    // cartDoc.subscribe(cartItems=>{
-    //   cartItems.
-    // });
-    //
-    // const fullCartContents: FullCartItem[] = [];
-    // this.cartContents.forEach(element => {
-    //   this.productService.getProduct(element._id).subscribe(productRes => {
-    //
-    //   });
-    //   if (product != undefined) {
-    //     fullCartContents.push({
-    //       product: product,
-    //       quantity: element.quantity
-    //     });
-    //   }
-    // });
-    // return fullCartContents;
+    const cartObservable = new CartObservable(subscriber => {
+      console.log(`retrieving cart for user '${id}'`);
+      (this.getDoc(id).collection('products').valueChanges() as Observable<CartItem[]>)
+        .subscribe(cartItemsRes => {
+
+          console.log(`Retrieved items:`);
+          console.log(cartItemsRes);
+
+          cartItemsRes.forEach(cartItem => {
+
+            console.log('Retrieving product for cart item:');
+            console.log(cartItem);
+
+            this.productService.getProduct(cartItem._id).subscribe(product => {
+
+              console.log('Added product to cart:');
+              console.log(product);
+
+              cartObservable.addCartItem({product: product, quantity: cartItem.quantity});
+
+              subscriber.next(cartObservable.getCart());
+            });
+          });
+        });
+    });
+    return cartObservable;
   }
 
   addProduct(id: string) {
@@ -80,5 +86,17 @@ export class CartService {
   private getDoc(id) {
     return this.db
       .doc(`${config.shopping_carts_endpoint}/${id}`);
+  }
+}
+
+class CartObservable extends Observable<FullCartItem[]> {
+  private fullCartItems: FullCartItem[] = [];
+
+  addCartItem(cartItem: FullCartItem) {
+    this.fullCartItems.push(cartItem);
+  }
+
+  getCart() {
+    return this.fullCartItems;
   }
 }
