@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../entities/product';
 import {v4 as uuid} from 'uuid';
-import {AngularFirestore, DocumentChangeAction} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {config} from '../app.config';
 import {Observable} from 'rxjs';
 
@@ -11,27 +11,28 @@ import {Observable} from 'rxjs';
 export class ProductService {
   products: Product[];
 
-  constructor(private firestore: AngularFirestore) {
-    this.products = this.debugProducts();
+  constructor(private db: AngularFirestore) {
   }
 
   addProduct(product: Product) {
     product._id = uuid();
-    // this.products.push(product);
     console.log(this.products);
-    return this.firestore
+    return this.db
         .collection(config.products_endpoint)
         .add(product);
   }
 
-  getProduct(id: string): Product {
-    return this.products.find(product => product._id === id);
+  getProduct(id: string): Observable<Product[]>{
+    console.log("Retrieving product with id " + id);
+    return this.db
+      .collection(config.products_endpoint, ref => ref.where('_id', '==', id))
+      .valueChanges() as Observable<Product[]>;
   }
 
-  getProducts(): Observable<DocumentChangeAction<Product>[]>{
-    return this.firestore
+  getProducts(): Observable<Product[]>{
+    return this.db
       .collection(config.products_endpoint)
-      .snapshotChanges() as Observable<DocumentChangeAction<Product>[]>;
+      .valueChanges() as Observable<Product[]>;
   }
 
   updateProduct(product: Product) {
@@ -41,38 +42,5 @@ export class ProductService {
     } else {
       throw new RangeError('Index out of range: ' + index);
     }
-  }
-
-  private debugProducts(): Product[] {
-    return [
-      {
-        _id: uuid(),
-        name: 'First Product',
-        description: 'Descpription 1',
-        price: 101
-        // price: {
-        //   value: 100,
-        //   currency: 'DKK'
-        // }
-      },
-      {
-        _id: uuid(),
-        name: 'Second Product',
-        description: 'Descpription 1',
-        price: 102
-      },
-      {
-        _id: uuid(),
-        name: 'Third Product',
-        description: 'Descpription 1234',
-        price: 103
-      },
-      {
-        _id: uuid(),
-        name: 'Third Product 123',
-        description: 'Descpription 123412312 3123 1  f8fsdf sasdfsd gg dsg sdg sdawe gfrs8dfds ',
-        price: 104
-      },
-    ];
   }
 }

@@ -5,6 +5,6 @@
 </div>
 <div *ngFor="let product of products$ | async | productPipe: userSearch">
   <app-product class="product"
-    [productInput]="product.payload.doc.data()"
+    [productInput]="product"
   ></app-product>
 </div>

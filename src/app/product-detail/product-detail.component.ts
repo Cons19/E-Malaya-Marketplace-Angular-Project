@@ -3,6 +3,7 @@ import {Product} from '../entities/product';
 import {ProductService} from '../services/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {CartService} from '../services/cart.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,23 +12,32 @@ import {CartService} from '../services/cart.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Product;
+  products$: Observable<Product[]>;
 
-  constructor(private tempData: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) { }
 
   ngOnInit() {
-    // this.quiz = this.tempData.getQuiz();
 
-    // Get the id from the url
-    const id = this.route.snapshot.paramMap.get('id');
+    this.retrieveProduct();
 
     // Find the product object based on id
-    this.product = this.tempData.getProduct(id);
-    // Load the product in the html
+    // this.productService.getProduct(id).then((result)=>{
+    //   this.product =
+    // });
+
 
   }
 
+  async retrieveProduct() {
+    // Get the id from the url
+    const id = this.route.snapshot.paramMap.get('id');
+    let products = <Observable<Product[]>>await this.productService.getProduct(id);
+    console.log("found matching products:");
+    console.log(products);
+    this.products$ = products;
+  }
+
   addToCart() {
-    this.cartService.addProduct(this.product._id);
+    // this.cartService.addProduct(this.product._id);
   }
 }

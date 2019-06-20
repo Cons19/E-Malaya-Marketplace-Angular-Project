@@ -4,7 +4,6 @@ import {NgRedux} from '@angular-redux/store';
 import {ProductActions} from '../product.actions';
 import {ProductService} from '../services/product.service';
 import {Observable} from 'rxjs';
-import {DocumentChangeAction} from '@angular/fire/firestore';
 import {Product} from '../entities/product';
 
 @Component({
@@ -14,7 +13,7 @@ import {Product} from '../entities/product';
 })
 export class ProductListComponent implements OnInit {
 
-  products$: Observable<DocumentChangeAction<Product>[]>;
+  products$: Observable<Product[]>;
   isLoading: boolean;
   userSearch: string;
 
