@@ -47,6 +47,6 @@ export class ProductService {
   }
 
   private getProductDoc(id: string) {
-    return this.db.doc <Product>(config.products_endpoint + '/' + id);
+    return this.db.doc <Product>(`${config.products_endpoint}/${id}`);
   }
 }
