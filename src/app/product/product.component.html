@@ -1,18 +1,18 @@
 <mat-card class="example-card">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>{{productInput.name | uppercase}}</mat-card-title>
+    <mat-card-title class="name">{{productInput.name | uppercase}}</mat-card-title>
     <!-- <mat-card-title>{{productInput.description}}</mat-card-title> -->
     <!-- <mat-card-subtitle>{{productInput.price.value}} {{productInput.price.currency | uppercase}}</mat-card-title> -->
   </mat-card-header>
   <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo">
   <!-- <mat-card-subtitle>Date: {{productInput.user.birthDate | date: 'dd/MM/yyyy' }}</mat-card-subtitle> -->
   <mat-card-content>
-    <p>Description: {{productInput.description}}</p>
-    <p>Price: {{productInput.price}} </p>
+    <p class="description">Description: {{productInput.description}}</p>
+    <p class="price">Price: {{productInput.price}} </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button routerLink="/portal/product-detail/{{productInput._id}}">Show Product</button>
+    <button class="showProduct" mat-button routerLink="/portal/product-detail/{{productInput._id}}">Show Product</button>
     <button mat-button (click)="addToCart()">Add to Cart</button>
   </mat-card-actions>
 </mat-card>
