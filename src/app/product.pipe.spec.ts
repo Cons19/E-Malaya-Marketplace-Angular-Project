@@ -27,4 +27,5 @@ describe('ProductPipe', () => {
         // let result = pipe.transform(products, 'name');
         expect(result.length).toBe(0);
     });
+    
 });
