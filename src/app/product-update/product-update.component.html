@@ -1,15 +1,16 @@
 <form [formGroup]="updateProduct" (ngSubmit)="saveUpdatedProduct()">
+  <mat-card-title id="update">Update Page</mat-card-title>
   <div>
     <mat-form-field >
-      <input id="name" matInput placeholder="Product name" formControlName="name">
+      <input id="name" matInput formControlName="name">
     </mat-form-field>
     <br>
     <mat-form-field >
-      <input id="description" matInput placeholder="Product description" formControlName="description">
+      <input id="description" matInput formControlName="description">
     </mat-form-field>
     <br>
     <mat-form-field >
-      <input id="price" matInput placeholder="Product price" formControlName="price">
+      <input id="price" matInput formControlName="price">
     </mat-form-field>
     
   </div>

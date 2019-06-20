@@ -18,7 +18,6 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    // check if admin then show buttons otherwise not
     this.ngRedux.select(state => state.products).subscribe(res => {
       this.isAdmin = res.isAdmin;   
     })
