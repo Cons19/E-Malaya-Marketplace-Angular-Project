@@ -12,9 +12,9 @@
     <button class="showProduct" mat-button routerLink="/portal/product-detail/{{productInput._id}}">Show Product</button>
     <button mat-button (click)="addToCart()">Add to Cart</button>
 
-    <button *ngIf="true" 
+    <button *ngIf="isAdmin" 
         class="showProduct" mat-button routerLink="/portal/product-update/{{productInput._id}}">Update Product</button>
-    <button *ngIf="true" 
+    <button *ngIf="isAdmin" 
         class="showProduct" mat-button routerLink="/portal/product-delete/{{productInput._id}}">Delete Product</button>
   </mat-card-actions>
 </mat-card>

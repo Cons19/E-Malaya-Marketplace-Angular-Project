@@ -25,7 +25,6 @@ export class ProductListComponent implements OnInit {
     // });
     // this.quizzes = this.data.quizzes;
 
-    // check if admin then show buttons otherwise not
   }
 }
 
