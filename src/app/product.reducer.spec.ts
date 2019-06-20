@@ -14,7 +14,7 @@ describe('Product reducer tests', () => {
     // 2.Act
     let newStateObj = productReducer(startState, actionObj);
     // 3.Assert (expect)
-    expect(newStateObj).toEqual({isLoggedIn: true});
+    expect(newStateObj).toEqual({isLoggedIn: true, isAdmin: undefined});
   });
 
   it('should set isLoggedIn to false after Logging Out', () => {
@@ -26,7 +26,7 @@ describe('Product reducer tests', () => {
     // 2.Act
     let newStateObj = productReducer(startState, actionObj);
     // 3.Assert (expect)
-    expect(newStateObj).toEqual({isLoggedIn: false});
+    expect(newStateObj).toEqual({isLoggedIn: false, isAdmin: undefined});
   });
 
   // it('should create a new Product', () => {

@@ -14,5 +14,4 @@ export class ProductPipe implements PipeTransform {
     }
     return products.filter(product => product.name.indexOf(search) !== -1);
   }
-
 }
