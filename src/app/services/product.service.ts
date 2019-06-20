@@ -15,7 +15,7 @@ export class ProductService {
 
   addProduct(product: Product) {
     const id = this.db.createId();
-    let productDoc = this.db.doc<Product>(config.products_endpoint + '/' + id);
+    let productDoc = this.getProductDoc(id);
 
     product._id = id;
     console.log(product);
@@ -24,7 +24,7 @@ export class ProductService {
 
   getProduct(id: string): Observable<Product> {
     console.log('Retrieving product with id ' + id);
-    let productDoc = this.db.doc <Product>(config.products_endpoint + '/' + id);
+    let productDoc = this.getProductDoc(id);
 
     return productDoc.valueChanges();
   }
@@ -39,8 +39,12 @@ export class ProductService {
     console.log('updating product');
     console.log(product);
 
-    let productDoc = this.db.doc<Product>(config.products_endpoint + '/' + product._id);
+    let productDoc = this.getProductDoc(product._id);
 
     return productDoc.update(product);
+  }
+
+  private getProductDoc(id: string) {
+    return this.db.doc <Product>(config.products_endpoint + '/' + id);
   }
 }
