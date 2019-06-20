@@ -26,10 +26,7 @@ describe('ProductService', () => {
       _id: '999',
       name: 'test product',
       description: 'test description',
-      price: {
-        value: 99.99,
-        currency: 'DKK'
-      }
+      price: 99.99
     };
 
     service.addProduct(product);
@@ -55,10 +52,7 @@ describe('ProductService', () => {
       _id: '999',
       name: 'test product',
       description: 'test description',
-      price: {
-        value: 99.99,
-        currency: 'DKK'
-      }
+      price: 99.99
     };
 
     try {

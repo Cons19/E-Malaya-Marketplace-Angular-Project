@@ -44,10 +44,7 @@ describe('CartService', () => {
       _id: '999',
       name: 'test product',
       description: 'test description',
-      price: {
-        value: 99.99,
-        currency: 'DKK'
-      }
+      price: 99.99
     };
     try {
       service.addProduct(product._id);
