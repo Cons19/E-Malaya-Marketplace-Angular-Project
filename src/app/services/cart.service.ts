@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ProductService} from './product.service';
-import {CartItem, FullCartItem} from '../entities/cart';
+import {CartItem} from '../entities/cart';
 import {User} from '../entities/user';
 import {Observable} from 'rxjs';
 import {config} from '../app.config';
@@ -20,40 +20,14 @@ export class CartService {
   };
   private cartContents: CartItem[];
 
-  constructor(private db: AngularFirestore, private productService: ProductService) {
+  constructor(private db: AngularFirestore) {
   }
 
-  getContents(): Observable<FullCartItem[]> {
-    const userId = this.user._id;
-
-    const cartObservable = new CartObservable(subscriber => {
-      console.log(`retrieving cart for user '${userId}'`);
-      (this.getDoc(userId).collection(productsPath).valueChanges() as Observable<CartItem[]>)
-        .subscribe(cartItemsRes => {
-
-          console.log(`Retrieved items:`);
-          console.log(cartItemsRes);
-
-          cartObservable.resetCart();
-
-          cartItemsRes.forEach(cartItem => {
-
-            console.log('Retrieving product for cart item:');
-            console.log(cartItem);
-
-            this.productService.getProduct(cartItem._id).subscribe(product => {
-
-              console.log('Added product to cart:');
-              console.log(product);
-
-              cartObservable.addCartItem({product: product, quantity: cartItem.quantity});
-
-              subscriber.next(cartObservable.getCart());
-            });
-          });
-        });
-    });
-    return cartObservable;
+  getContents(): Observable<CartItem[]> {
+    const id = this.user._id;
+    console.log(`retrieving cart for user '${id}'`);
+    return this.getDoc(id)
+      .collection(productsPath).valueChanges() as Observable<CartItem[]>;
   }
 
   addProduct(id: string): Promise<void> {
@@ -78,21 +52,5 @@ export class CartService {
   private getDoc(id) {
     return this.db
       .doc(`${config.shopping_carts_endpoint}/${id}`);
-  }
-}
-
-class CartObservable extends Observable<FullCartItem[]> {
-  private fullCartItems: FullCartItem[] = [];
-
-  addCartItem(cartItem: FullCartItem) {
-    this.fullCartItems.push(cartItem);
-  }
-
-  getCart() {
-    return this.fullCartItems;
-  }
-
-  resetCart() {
-    this.fullCartItems = [];
   }
 }
