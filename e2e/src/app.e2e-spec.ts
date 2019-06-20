@@ -94,8 +94,16 @@ describe('workspace-project App', () => {
     expect(browser.getCurrentUrl()).toContain('/portal/product-list');
     browser.sleep(1000); // sleep to 100 miliseconds
 
-    // TODO: verify if the last product was added (name, desc, price)
+    // verify if the last product was added (name, desc, price)
+    let productElem = element.all(by.css(".product")).last()
+    let productItemName = productElem.element(by.css(".name")).getText()
+    let productItemDesc = productElem.element(by.css(".description")).getText()
+    let productItemPrice = productElem.element(by.css(".price")).getText()
 
+    expect(productItemName).toEqual('TITLE OF THE PRODUCT 1');
+    expect(productItemDesc).toEqual('Description: Description of the product 1');
+    expect(productItemPrice).toEqual('Price: 153');
+    
   });
 
   afterEach(async () => {
