@@ -40,6 +40,9 @@ import {ProductPipe} from './product.pipe';
 import {CartItemComponent} from './cart-item/cart-item.component';
 import {ProductService} from './services/product.service';
 import {ProductUpdateComponent} from './product-update/product-update.component';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -78,7 +81,8 @@ import {ProductUpdateComponent} from './product-update/product-update.component'
     NgReduxModule, NgReduxRouterModule.forRoot(), BrowserAnimationsModule,
     MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
     MatSnackBarModule, MatCardModule, MatDividerModule, MatExpansionModule, MatCheckboxModule,
-
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
@@ -86,7 +90,7 @@ import {ProductUpdateComponent} from './product-update/product-update.component'
 export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
               private devTool: DevToolsExtension,
-              private ngReduxRouter: NgReduxRouter, ) {
+              private ngReduxRouter: NgReduxRouter,) {
     // this.ngRedux.configureStore(rootReducer, {});
     this.ngRedux.configureStore(rootReducer, {}, [], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
     ngReduxRouter.initialize(/* args */);
