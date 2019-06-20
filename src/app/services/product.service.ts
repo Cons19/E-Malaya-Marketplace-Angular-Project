@@ -44,6 +44,10 @@ export class ProductService {
     return productDoc.update(product);
   }
 
+  deleteProduct(id: string): Promise<void> {
+      return this.getProductDoc(id).delete();
+  }
+
   private getProductDoc(id: string) {
     return this.db.doc <Product>(config.products_endpoint + '/' + id);
   }

@@ -1,8 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../entities/product';
 import {CartService} from '../services/cart.service';
-import { NgRedux } from '@angular-redux/store';
-import { AppState } from '../store';
+import {NgRedux} from '@angular-redux/store';
+import {AppState} from '../store';
+import {ProductService} from '../services/product.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-product',
@@ -14,16 +16,23 @@ export class ProductComponent implements OnInit {
 
   @Input() productInput: Product;
 
-  constructor(private cartService: CartService, private ngRedux: NgRedux<AppState>) {
+  constructor(private snackBar: MatSnackBar, private cartService: CartService, private ngRedux: NgRedux<AppState>, private productService: ProductService) {
   }
 
   ngOnInit() {
     this.ngRedux.select(state => state.products).subscribe(res => {
-      this.isAdmin = res.isAdmin;   
-    })
+      this.isAdmin = res.isAdmin;
+    });
   }
 
   addToCart() {
     this.cartService.addProduct(this.productInput._id);
+  }
+
+  deleteProduct() {
+    this.productService.deleteProduct(this.productInput._id)
+      .then(() => {
+        this.snackBar.open(`Product ${this.productInput.name} has been deleted`, 'Dismiss', {duration: 2000});
+      });
   }
 }
