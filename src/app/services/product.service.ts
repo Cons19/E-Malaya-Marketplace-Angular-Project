@@ -29,18 +29,18 @@ export class ProductService {
     return productDoc.valueChanges();
   }
 
-  getProducts(): Observable<Product[]>{
+  getProducts(): Observable<Product[]> {
     return this.db
       .collection(config.products_endpoint)
       .valueChanges() as Observable<Product[]>;
   }
 
   updateProduct(product: Product) {
-    const index: number = this.products.findIndex(thatProduct => thatProduct._id === product._id);
-    if (index > -1) {
-      this.products.splice(index, 1, product);
-    } else {
-      throw new RangeError('Index out of range: ' + index);
-    }
+    console.log('updating product');
+    console.log(product);
+
+    let productDoc = this.db.doc<Product>(config.products_endpoint + '/' + product._id);
+
+    return productDoc.update(product);
   }
 }
