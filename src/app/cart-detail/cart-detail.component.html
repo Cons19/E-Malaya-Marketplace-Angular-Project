@@ -5,7 +5,7 @@
   </mat-card-actions>
 </mat-card>
 
-<div *ngFor="let cartItem of cartItems">
+<div *ngFor="let cartItem of cartItems | async">
   <app-cart-item
     [cartItemInput]="cartItem"
     (cartItemRemoved)="handleItemRemoved($event)"

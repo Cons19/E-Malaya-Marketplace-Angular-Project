@@ -1,31 +1,50 @@
 import {Injectable} from '@angular/core';
 import {ProductService} from './product.service';
-import {CartItem, FullCartItem} from '../entities/cart';
+import {CartItem} from '../entities/cart';
+import {User} from '../entities/user';
+import {Observable} from 'rxjs';
+import {config} from '../app.config';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private user: User = {
+    _id: 'QD5BMv62Nj895tuuUQ6L',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'johndoe@email.com',
+    password: 'placebo'
+  };
   private cartContents: CartItem[];
 
-  constructor(private productService: ProductService) {
-    this.debugCart();
+  constructor(private db: AngularFirestore, private productService: ProductService) {
   }
 
-  getContents(): FullCartItem[] {
-    const fullCartContents: FullCartItem[] = [];
+  getContents(): Observable<CartItem[]> {
+    const id = this.user._id;
+    console.log(`retrieving cart for user '${id}'`);
+    return this.getDoc(id)
+      .collection('products').valueChanges() as Observable<CartItem[]>;
+
+    // cartDoc.subscribe(cartItems=>{
+    //   cartItems.
+    // });
+    //
+    // const fullCartContents: FullCartItem[] = [];
     // this.cartContents.forEach(element => {
-    //   const product: Product = this.productService.getProduct(element._id);
-    //   if (product != undefined) {
-    //   fullCartContents.push({
-    //     product: product,
-    //     quantity: element.quantity
+    //   this.productService.getProduct(element._id).subscribe(productRes => {
+    //
     //   });
-    //   } else {
-    //     throw new Error("Product not found with id " + element._id);
+    //   if (product != undefined) {
+    //     fullCartContents.push({
+    //       product: product,
+    //       quantity: element.quantity
+    //     });
     //   }
     // });
-    return fullCartContents;
+    // return fullCartContents;
   }
 
   addProduct(id: string) {
@@ -58,16 +77,8 @@ export class CartService {
     product.quantity = quantity;
   }
 
-  debugCart() {
-    // this.cartContents = [];
-    // let products: Product[] = this.productService.getProducts();
-    // this.cartContents.push({
-    //   _id: products[0]._id,
-    //   quantity: 1
-    // });
-    // this.cartContents.push({
-    //   _id: products[1]._id,
-    //   quantity: 10
-    // });
+  private getDoc(id) {
+    return this.db
+      .doc(`${config.shopping_carts_endpoint}/${id}`);
   }
 }
