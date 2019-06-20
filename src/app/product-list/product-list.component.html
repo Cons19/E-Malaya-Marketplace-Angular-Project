@@ -1,12 +1,12 @@
 <div id="search">
-  <mat-form-field> 
+  <mat-form-field>
     <input  matInput placeholder="Search product" value="" [(ngModel)]="userSearch">
   </mat-form-field> 
   <br>
   <button *ngIf="isAdmin" class="createProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
 </div>
 <div class="container">
-  <div *ngFor="let product of products | productPipe: userSearch">
+  <div *ngFor="let product of products$ | async | productPipe: userSearch">
     <app-product class="product"
       [productInput]="product"
     ></app-product>

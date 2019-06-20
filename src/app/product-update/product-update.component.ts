@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ProductActions } from '../product.actions';
-import { ProductService } from '../services/product.service';
-import { Product } from '../entities/product';
-import { productReducer } from '../product.reducer';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ProductActions} from '../product.actions';
+import {ProductService} from '../services/product.service';
+import {Product} from '../entities/product';
+import {Observable} from 'rxjs';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-update-product',
@@ -12,34 +13,38 @@ import { productReducer } from '../product.reducer';
   styleUrls: ['./product-update.component.scss']
 })
 export class ProductUpdateComponent implements OnInit {
-  product: Product;
-  updateProduct: FormGroup;
+  product: Observable<Product>;
+  productForm: FormGroup;
 
-  constructor(private fb: FormBuilder,
-    private router: Router, private productActions: ProductActions, private productService: ProductService,
-    private route: ActivatedRoute, private tempData: ProductService,) { }
+  constructor(private snackBar: MatSnackBar, private fb: FormBuilder, private router: Router,
+              private productActions: ProductActions, private productService: ProductService,
+              private route: ActivatedRoute) {
+  }
 
-  saveUpdatedProduct() {
+  updateProduct() {
+    let product = this.productForm.value as Product;
 
-    let product = this.updateProduct.value as Product;
-    // Get the id from the url
-    
-
-    this.productService.updateProduct(product);
-    this.router.navigate(['../portal/product-list']);
+    this.productService.updateProduct(product)
+      .then(() => {
+        console.log('product updated!');
+        this.snackBar.open('Product updated', '', {duration: 500}).afterDismissed().subscribe(() => {
+          this.router.navigate(['../portal/product-list']);
+        });
+      });
   }
 
 
   ngOnInit() {
+    this.productForm = this.fb.group({
+      _id: [''],
+      name: [''],
+      description: [''],
+      price: ['']
+
+    });
+
     const id = this.route.snapshot.paramMap.get('id');
-    this.product = this.tempData.getProduct(id);
-    this.updateProduct = this.fb.group({
-      _id: id,
-      name: this.product.name,
-      description: this.product.description,
-      price: this.product.price
-      
-    })
+    this.product = this.productService.getProduct(id);
   }
 
 }

@@ -1,9 +1,8 @@
 import {ProductState} from './store';
 import {tassign} from 'tassign';
 import {ProductActions} from './product.actions';
-import {ProductService} from './services/product.service';
 
-const productService = new ProductService();
+// const productService = new ProductService();
 const INITIAL_STATE: ProductState = {isLoggedIn: false, isAdmin: false
   // , products: productService.products
 };

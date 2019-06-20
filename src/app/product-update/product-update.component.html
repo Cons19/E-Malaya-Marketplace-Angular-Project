@@ -1,20 +1,19 @@
-<form [formGroup]="updateProduct" (ngSubmit)="saveUpdatedProduct()">
+<form *ngIf="product | async as product" [formGroup]="productForm" (ngSubmit)="updateProduct()">
   <mat-card-title id="update">Update Page</mat-card-title>
   <div>
-    <mat-form-field >
-      <input id="name" matInput formControlName="name">
+    <input type="hidden" formControlName="_id" [ngModel]="product._id">
+    <mat-form-field>
+      <input id="name" matInput formControlName="name" [ngModel]="product.name">
     </mat-form-field>
     <br>
-    <mat-form-field >
-      <input id="description" matInput formControlName="description">
+    <mat-form-field>
+      <input id="description" matInput formControlName="description" [ngModel]="product.description">
     </mat-form-field>
     <br>
-    <mat-form-field >
-      <input id="price" matInput formControlName="price">
+    <mat-form-field>
+      <input id="price" matInput formControlName="price" [ngModel]="product.price">
     </mat-form-field>
-    
   </div>
-  <div>
-  </div>
-  <button id="updateButton" mat-raised-button color="primary">Update Product</button>
+  <button id="updateButton" mat-raised-button color="primary">Update</button>
 </form>
+<mat-card-title *ngIf="!(product | async)">Product not found</mat-card-title>
