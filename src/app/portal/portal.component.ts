@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductActions } from '../product.actions';
+import { AppActions } from '../app.actions';
 
 @Component({
   selector: 'app-portal',
@@ -8,13 +8,13 @@ import { ProductActions } from '../product.actions';
 })
 export class PortalComponent implements OnInit {
 
-  constructor(private productActions: ProductActions) { }
+  constructor(private productActions: AppActions) { }
 
   ngOnInit() {
   }
 
   onLogoutClick() {
-    this.productActions.setLoggedIn(false)
+    this.productActions.setLoggedIn(false);
     this.productActions.setAdmin(false);
   }
 

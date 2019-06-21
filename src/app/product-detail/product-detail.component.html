@@ -12,7 +12,7 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button *ngIf="true" class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-update/{{product._id}}">Update Product</button>
+      <button *ngIf="isAdmin$ | async" class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-update/{{product._id}}">Update Product</button>
     </mat-card-actions>
     <mat-card-actions>
       <button mat-button (click)="addToCart()">Add to Cart</button>
