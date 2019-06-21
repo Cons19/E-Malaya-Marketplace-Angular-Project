@@ -3,6 +3,7 @@ import {CartService} from '../services/cart.service';
 import {FullCartItem} from '../entities/cart';
 import {Observable} from 'rxjs';
 import {ProductService} from '../services/product.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,20 +13,22 @@ import {ProductService} from '../services/product.service';
 export class CartDetailComponent implements OnInit {
   cartItems: Observable<FullCartItem[]>;
 
-  constructor(private cartService: CartService, private productService: ProductService) {
+  constructor(private snackBar: MatSnackBar, private cartService: CartService, private productService: ProductService) {
   }
 
   ngOnInit() {
+    this.refreshList();
+  }
+
+  private refreshList() {
     this.cartItems = this.cartService.getContents();
   }
 
   handleItemRemoved(cartItem: FullCartItem) {
-    // const index: number = this.cartItems.findIndex(item => item === cartItem);
-    // if (index > -1) {
-    //   this.cartItems.splice(index, 1);
-    // }
-    // this.cart.removeProduct(cartItem.product._id);
-    // console.log('removed ' + cartItem);
+    this.cartService.removeProduct(cartItem.product._id)
+      .then(() => {
+        this.snackBar.open(`'${cartItem.product.name}' has been removed`, 'Dismiss', {duration: 2000});
+      });
   }
 
   refresh() {

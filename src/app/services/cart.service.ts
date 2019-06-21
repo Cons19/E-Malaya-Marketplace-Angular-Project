@@ -34,6 +34,8 @@ export class CartService {
           console.log(`Retrieved items:`);
           console.log(cartItemsRes);
 
+          cartObservable.resetCart();
+
           cartItemsRes.forEach(cartItem => {
 
             console.log('Retrieving product for cart item:');
@@ -62,11 +64,10 @@ export class CartService {
     return cartDoc.set(data);
   }
 
-  removeProduct(id: string) {
-    const index: number = this.cartContents.findIndex(item => item._id === id);
-    if (index > -1) {
-      this.cartContents.splice(index, 1);
-    }
+  removeProduct(id: string): Promise<void> {
+    const userId = this.user._id;
+
+    return this.getDoc(userId).collection(productsPath).doc<CartItem>(id).delete();
   }
 
   changeQuantity(id: string, quantity: number) {
@@ -89,5 +90,9 @@ class CartObservable extends Observable<FullCartItem[]> {
 
   getCart() {
     return this.fullCartItems;
+  }
+
+  resetCart() {
+    this.fullCartItems = [];
   }
 }
