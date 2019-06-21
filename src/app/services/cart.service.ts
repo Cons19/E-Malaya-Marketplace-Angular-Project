@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {ProductService} from './product.service';
 import {CartItem} from '../entities/cart';
 import {User} from '../entities/user';
 import {Observable} from 'rxjs';
@@ -18,39 +17,35 @@ export class CartService {
     email: 'johndoe@email.com',
     password: 'placebo'
   };
-  private cartContents: CartItem[];
 
   constructor(private db: AngularFirestore) {
   }
 
   getContents(): Observable<CartItem[]> {
-    const id = this.user._id;
-    console.log(`retrieving cart for user '${id}'`);
-    return this.getDoc(id)
+    console.log(`retrieving cart for user '${this.user._id}'`);
+    return this.getDoc()
       .collection(productsPath).valueChanges() as Observable<CartItem[]>;
   }
 
   addProduct(id: string): Promise<void> {
-    const userId = this.user._id;
-
-    let cartDoc = this.getDoc(userId).collection(productsPath).doc<CartItem>(id);
+    let cartDoc = this.getDoc().collection(productsPath).doc<CartItem>(id);
     const data: CartItem = {_id: id, quantity: 1};
     return cartDoc.set(data);
   }
 
   removeProduct(id: string): Promise<void> {
-    const userId = this.user._id;
-
-    return this.getDoc(userId).collection(productsPath).doc<CartItem>(id).delete();
+    return this.getDoc().collection(productsPath).doc<CartItem>(id).delete();
   }
 
   changeQuantity(id: string, quantity: number) {
-    const product: CartItem = this.cartContents.find(item => item._id === id);
-    product.quantity = quantity;
+    const data: CartItem = {_id: id, quantity: quantity};
+    return this.getDoc()
+      .collection(productsPath)
+      .doc<CartItem>(id)
+      .update(data);
   }
 
-  private getDoc(id) {
-    return this.db
-      .doc(`${config.shopping_carts_endpoint}/${id}`);
+  private getDoc() {
+    return this.db.doc(`${config.shopping_carts_endpoint}/${this.user._id}`);
   }
 }

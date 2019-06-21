@@ -61,19 +61,6 @@ export class CartDetailComponent implements OnInit, OnDestroy {
         this.snackBar.open(`'${cartItem.product.name}' has been removed`, 'Dismiss', {duration: 2000});
       });
   }
-
-  refresh() {
-    this.updateItems();
-  }
-
-  reset() {
-    // this.cart.debugCart();
-    // this.updateItems();
-  }
-
-  private updateItems() {
-    // this.cartItems = this.cart.getContents();
-  }
 }
 
 class CartObservable extends Observable<FullCartItem[]> {
