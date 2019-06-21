@@ -11,7 +11,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./cart-detail.component.scss']
 })
 export class CartDetailComponent implements OnInit, OnDestroy {
-  cartItems: CartObservable;
+  cartItems$: CartObservable;
   cartSubscriptions: Subscription[];
 
   constructor(private snackBar: MatSnackBar, private cartService: CartService, private productService: ProductService) {
@@ -25,7 +25,7 @@ export class CartDetailComponent implements OnInit, OnDestroy {
       console.log(`Retrieved items:`);
       console.log(cartItemsRes);
 
-      this.cartItems = new CartObservable(subscriber => {
+      this.cartItems$ = new CartObservable(subscriber => {
 
         cartItemsRes.forEach(cartItem => {
 
@@ -37,9 +37,9 @@ export class CartDetailComponent implements OnInit, OnDestroy {
             console.log("Added product to cart:");
             console.log(product);
 
-            this.cartItems.addCartItem({product: product, quantity: cartItem.quantity});
+            this.cartItems$.addCartItem({product: product, quantity: cartItem.quantity});
 
-            subscriber.next(this.cartItems.getCart());
+            subscriber.next(this.cartItems$.getCart());
           }));
         });
       });
