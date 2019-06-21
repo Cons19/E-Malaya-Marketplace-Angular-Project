@@ -18,7 +18,6 @@ export class CartDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.updateItems();
     this.cartSubscriptions = [];
     this.cartSubscriptions.push(this.cartService.getContents().subscribe(cartItemsRes => {
 
