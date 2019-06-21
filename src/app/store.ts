@@ -1,16 +1,13 @@
 import {routerReducer} from '@angular-redux/router';
-// import { combineReducers } from 'redux';
 import {combineReducers} from 'redux';
-import {productReducer} from './product.reducer';
+import {appReducer} from './app.reducer';
 
-export class ProductState {
+export class AppState {
   isLoggedIn: boolean;
   isAdmin: boolean;
 }
-export class AppState {
-  products?: ProductState;
-}
+
 export const rootReducer = combineReducers<AppState>({
-    products: productReducer,
-    router: routerReducer
+  products: appReducer,
+  router: routerReducer
 } as any);

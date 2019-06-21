@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from '../store';
-import { ProductActions } from '../product.actions';
+import { AppActions } from '../app.actions';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +11,10 @@ import { ProductActions } from '../product.actions';
 export class HomeComponent implements OnInit {
   loggedIn: boolean;
 
-  constructor(private productActions: ProductActions, private ngRedux: NgRedux<AppState>) { }
+  constructor(private productActions: AppActions, private ngRedux: NgRedux<AppState>) { }
 
   ngOnInit() {
-    this.ngRedux.select(state => state.products).subscribe(res => {
+    this.ngRedux.select(state => state).subscribe(res => {
       this.loggedIn = res.isLoggedIn;   
     })
   }
