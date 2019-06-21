@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ProductActions} from '../product.actions';
+import {AppActions} from '../app.actions';
 import {ProductService} from '../services/product.service';
 import {Product} from '../entities/product';
 import {Observable} from 'rxjs';
@@ -17,7 +17,7 @@ export class ProductUpdateComponent implements OnInit {
   productForm: FormGroup;
 
   constructor(private snackBar: MatSnackBar, private fb: FormBuilder, private router: Router,
-              private productActions: ProductActions, private productService: ProductService,
+              private productActions: AppActions, private productService: ProductService,
               private route: ActivatedRoute) {
   }
 

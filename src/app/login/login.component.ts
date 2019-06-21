@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth/auth.service';
 import {AdminService} from '../admin/admin.service';
-import {ProductActions} from '../product.actions';
+import {AppActions} from '../app.actions';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import {ProductActions} from '../product.actions';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private adminService: AdminService, private productActions: ProductActions) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private adminService: AdminService, private productActions: AppActions) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group(
