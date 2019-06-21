@@ -6,8 +6,6 @@ import {productReducer} from './product.reducer';
 export class ProductState {
   isLoggedIn: boolean;
   isAdmin: boolean;
-  // products: Product[];
-  // isLoading: boolean;
 }
 export class AppState {
   products?: ProductState;
