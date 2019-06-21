@@ -1,6 +1,4 @@
-<div *ngFor="let cartItem of cartItems$ | async">
-  <app-cart-item
-    [cartItemInput]="cartItem"
-    (cartItemRemoved)="handleItemRemoved($event)"
-  ></app-cart-item>
-</div>
+<app-cart-item *ngFor="let cartItem of cartItems$ | async"
+               [cartItemInput]="cartItem"
+               (cartItemRemoved)="handleItemRemoved($event)"
+></app-cart-item>
