@@ -13,8 +13,8 @@
     <div class="example-button-row">
       <button class="showProduct" mat-raised-button color="primary" routerLink="/portal/product-detail/{{productInput._id}}">Show Product</button>
       <button class="addProduct" mat-raised-button color="primary" (click)="addToCart()">Add to Cart</button>
-      <button *ngIf="isAdmin" class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-update/{{productInput._id}}">Update Product</button>
-      <button *ngIf="isAdmin" class="deleteProduct" mat-raised-button color="primary" (click)="deleteProduct()">Delete Product</button>
+      <button *ngIf="isAdmin$ | async" class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-update/{{productInput._id}}">Update Product</button>
+      <button *ngIf="isAdmin$ | async" class="deleteProduct" mat-raised-button color="primary" (click)="deleteProduct()">Delete Product</button>
     </div>
   </mat-card-actions>
 </mat-card>

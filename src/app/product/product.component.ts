@@ -5,6 +5,7 @@ import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../store';
 import {ProductService} from '../services/product.service';
 import {MatSnackBar} from '@angular/material';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -12,7 +13,7 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  isAdmin: boolean;
+  isAdmin$: Observable<boolean>;
 
   @Input() productInput: Product;
 
@@ -20,9 +21,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ngRedux.select(state => state.products).subscribe(res => {
-      this.isAdmin = res.isAdmin;
-    });
+    this.isAdmin$ = this.ngRedux.select(state => state.isAdmin)
   }
 
   addToCart() {
