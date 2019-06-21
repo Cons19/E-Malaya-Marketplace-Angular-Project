@@ -23,7 +23,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
     this.products$ = this.productService.getProducts();
     // create an observable for the isAdmin field
-    this.isAdmin$ = this.ngRedux.select(state => state.products.isAdmin);
+    this.isAdmin$ = this.ngRedux.select(state => state.isAdmin);
   }
 }
 
