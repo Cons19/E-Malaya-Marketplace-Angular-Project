@@ -3,7 +3,8 @@
     <input  matInput placeholder="Search product" value="" [(ngModel)]="userSearch">
   </mat-form-field> 
   <br>
-  <button *ngIf="isAdmin" class="createProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
+  <!--  *ngIf -  isAdmin$ gets the value from the observable -->
+  <button *ngIf="isAdmin$ | async" class="createProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
 </div>
 <div class="container">
   <div *ngFor="let product of products$ | async | productPipe: userSearch">
