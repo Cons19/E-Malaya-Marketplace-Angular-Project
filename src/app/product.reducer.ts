@@ -27,8 +27,10 @@ export function productReducer(state: ProductState = INITIAL_STATE, action: any)
 //    case ProductActions.DELETE_PRODUCT:
 //     return 
     case ProductActions.LOG_IN:
+      // Shallow copy of the state object and changes isLoggedIn of the copy.
       return tassign(state, {isLoggedIn: action.payload});
     case ProductActions.ADMIN:
+      // Shallow copy of the state object and changes isLoggedIn of the copy.
       return tassign(state, {isAdmin: action.payload});
     default:
       return state;
