@@ -12,6 +12,7 @@ import {PortalComponent} from './portal/portal.component';
 import {AboutComponent} from './about/about.component';
 import {ContactComponent} from './contact/contact.component';
 import {ProductUpdateComponent} from './product-update/product-update.component';
+import { AdminGuard } from './admin/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home/login', pathMatch: 'full' },
@@ -27,8 +28,8 @@ const routes: Routes = [
   // { path: 'portal', component: PortalComponent, /*canActivate: [AuthGuard],*/ children: [
     { path: 'product-list', component: ProductListComponent, /*canActivate: [AuthGuard]*/ },
     { path: 'product-detail/:id', component:ProductDetailComponent, /*canActivate: [AuthGuard]*/ },
-    { path: 'product-update/:id', component:ProductUpdateComponent},
-    { path: 'product-create', component: ProductCreateComponent, /*canActivate: [AdminGuard]*/ },
+    { path: 'product-update/:id', component:ProductUpdateComponent, canActivate: [AdminGuard] },
+    { path: 'product-create', component: ProductCreateComponent, canActivate: [AdminGuard] },
     { path: 'cart', component: CartDetailComponent},
   ]},
   
