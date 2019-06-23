@@ -3,12 +3,13 @@ import {Product} from '../entities/product';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {config} from '../app.config';
 import {Observable} from 'rxjs';
+import {CartService} from "./cart.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  constructor(private db: AngularFirestore) {
+  constructor(private db: AngularFirestore, private cartService: CartService) {
   }
 
   addProduct(product: Product): Promise<void> {
@@ -43,7 +44,8 @@ export class ProductService {
   }
 
   deleteProduct(id: string): Promise<void> {
-      return this.getProductDoc(id).delete();
+    this.cartService.removeProduct(id);
+    return this.getProductDoc(id).delete();
   }
 
   private getProductDoc(id: string) {
