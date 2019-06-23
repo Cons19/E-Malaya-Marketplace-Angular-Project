@@ -30,7 +30,6 @@ export class ProductDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     let products = <Observable<Product>>await this.productService.getProduct(id);
     console.log("found matching product:");
-    console.log(products);
     this.product = products;
   }
 

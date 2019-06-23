@@ -44,7 +44,6 @@ import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {INITIAL_STATE} from "./app.reducer";
 
-
 @NgModule({
   declarations: [
     AppComponent,

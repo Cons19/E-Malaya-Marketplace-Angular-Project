@@ -12,6 +12,7 @@ import {MatSnackBar} from '@angular/material';
   templateUrl: './product-update.component.html',
   styleUrls: ['./product-update.component.scss']
 })
+
 export class ProductUpdateComponent implements OnInit {
   product: Observable<Product>;
   productForm: FormGroup;
@@ -33,18 +34,15 @@ export class ProductUpdateComponent implements OnInit {
       });
   }
 
-
   ngOnInit() {
     this.productForm = this.fb.group({
       _id: [''],
       name: [''],
       description: [''],
-      price: ['']
-
+      price: [''] // []  for number ???
     });
 
     const id = this.route.snapshot.paramMap.get('id');
     this.product = this.productService.getProduct(id);
   }
-
 }

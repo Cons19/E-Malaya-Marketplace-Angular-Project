@@ -2,7 +2,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 import {Product} from './entities/product';
 
 @Pipe({
-  name: 'productPipe' //used when I apply the pipe(filter)
+  name: 'productPipe' //used when I apply the pipe (filter)
 })
 export class ProductPipe implements PipeTransform {
 

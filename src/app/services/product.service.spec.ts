@@ -30,7 +30,6 @@ describe('ProductService', () => {
     };
 
     service.addProduct(product);
-
     expect(service.getProduct(product._id)).toBe(product);
   });
 
@@ -41,7 +40,6 @@ describe('ProductService', () => {
     product.name = "test product modified";
 
     service.updateProduct(product);
-
     expect(service.getProducts()[0]).toBe(product);
   });
 

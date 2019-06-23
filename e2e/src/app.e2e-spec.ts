@@ -103,7 +103,6 @@ describe('workspace-project App', () => {
     expect(productItemName).toEqual('TITLE OF THE PRODUCT 1');
     expect(productItemDesc).toEqual('Description: Description of the product 1');
     expect(productItemPrice).toEqual('Price: 153');
-    
   });
 
   afterEach(async () => {

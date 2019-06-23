@@ -14,7 +14,7 @@ import {MatSnackBar} from '@angular/material';
 export class ProductCreateComponent implements OnInit {
   product: FormGroup;
 
-  constructor(private snackBar: MatSnackBar, private fb: FormBuilder, private data: ProductService,
+  constructor(private snackBar: MatSnackBar, private fb: FormBuilder,
               private router: Router, private productActions: AppActions, private productService: ProductService) {
   }
 
