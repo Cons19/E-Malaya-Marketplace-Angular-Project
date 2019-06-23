@@ -1,5 +1,5 @@
-import {AppActions} from './app.actions';
-import {appReducer} from './app.reducer';
+import {ProductActions} from './product.actions';
+import {productReducer} from './product.reducer';
 
 var deepFreeze = require('deep-freeze');
 
@@ -10,9 +10,9 @@ describe('Product reducer tests', () => {
     // 1.Arrange
     let startState = {isLoggedIn: undefined, isAdmin: undefined};
     deepFreeze(startState);
-    let actionObj = {type: AppActions.LOG_IN, payload: true};
+    let actionObj = {type: ProductActions.LOG_IN, payload: true};
     // 2.Act
-    let newStateObj = appReducer(startState, actionObj);
+    let newStateObj = productReducer(startState, actionObj);
     // 3.Assert (expect)
     expect(newStateObj).toEqual({isLoggedIn: true, isAdmin: undefined});
   });
@@ -22,9 +22,9 @@ describe('Product reducer tests', () => {
     // 1.Arrange
     let startState = {isLoggedIn: undefined, isAdmin: undefined};
     deepFreeze(startState);
-    let actionObj = {type: AppActions.LOG_IN, payload: false};
+    let actionObj = {type: ProductActions.LOG_IN, payload: false};
     // 2.Act
-    let newStateObj = appReducer(startState, actionObj);
+    let newStateObj = productReducer(startState, actionObj);
     // 3.Assert (expect)
     expect(newStateObj).toEqual({isLoggedIn: false, isAdmin: undefined});
   });
@@ -42,9 +42,9 @@ describe('Product reducer tests', () => {
   //                       currency: 'EUR'
   //                       }
   //                   } as Product;
-  //   let actionObj = { type: AppActions.CREATE_PRODUCT, payload: product };
+  //   let actionObj = { type: ProductActions.CREATE_PRODUCT, payload: product };
   //   // 2.Act
-  //   let newStateObj = appReducer(startState, actionObj);
+  //   let newStateObj = productReducer(startState, actionObj);
   //   // 3.Assert (expect)
   //   // expect(newStateObj.products.length).toBe(1);
   //   expect(newStateObj.products[0]._id).toBe('15');

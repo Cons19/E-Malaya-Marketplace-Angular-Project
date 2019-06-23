@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppActions } from '../app.actions';
+import { ProductActions } from '../product.actions';
 
 @Component({
   selector: 'app-portal',
@@ -8,7 +8,7 @@ import { AppActions } from '../app.actions';
 })
 export class PortalComponent implements OnInit {
 
-  constructor(private productActions: AppActions) { }
+  constructor(private productActions: ProductActions) { }
 
   ngOnInit() {
   }
