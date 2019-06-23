@@ -6,10 +6,9 @@
   <button mat-button routerLink="cart">Shopping Cart</button>
   <span class="example-fill-remaining-space"></span>
 
-  <p *ngIf="isAdmin$ | async; else user">ADMIN</p>
-  <ng-template #user>
-    <p>USER</p>
-  </ng-template>
+  <p *ngIf="isAdmin$ | async">ADMIN</p>
+  <p *ngIf="!(isAdmin$ | async)">USER</p>
+
   <button mat-button (click)="onLogoutClick()" routerLink="/">Log out</button>
 </mat-toolbar>
 
