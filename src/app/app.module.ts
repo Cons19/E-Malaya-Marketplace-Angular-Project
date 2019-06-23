@@ -23,6 +23,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
@@ -42,7 +43,6 @@ import {ProductUpdateComponent} from './product-update/product-update.component'
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {INITIAL_STATE} from "./app.reducer";
 
 @NgModule({
   declarations: [
@@ -74,7 +74,7 @@ import {INITIAL_STATE} from "./app.reducer";
     MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
     MatSnackBarModule, MatCardModule, MatDividerModule, MatExpansionModule, MatCheckboxModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule, MatProgressSpinnerModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
@@ -83,7 +83,8 @@ export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
               private devTool: DevToolsExtension,
               private ngReduxRouter: NgReduxRouter,) {
-    this.ngRedux.configureStore(rootReducer, INITIAL_STATE, [], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
+    // this.ngRedux.configureStore(rootReducer, {});
+    this.ngRedux.configureStore(rootReducer, {}, [], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
     ngReduxRouter.initialize(/* args */);
   }
 }

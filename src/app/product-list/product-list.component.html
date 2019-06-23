@@ -7,10 +7,19 @@
   <button *ngIf="isAdmin$ | async" class="createProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
 </div>
 <div class="container">
+
   <div *ngFor="let product of products$ | async | productPipe: userSearch">
     <app-product class="product"
       [productInput]="product"
     ></app-product>
   </div>
+
+  <ng-container *ngIf=" !(products$ | async) && (isLoading$ | async)">
+    <mat-spinner style="margin: auto; align-self: center;"></mat-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="!(products$ | async) && !(isLoading$ | async)">
+    <mat-card-title style="margin: auto; text-align: center;">Cannot retrieve products</mat-card-title>
+  </ng-container>
 </div>
 

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../entities/product';
 import {Router} from '@angular/router';
-import {AppActions} from '../app.actions';
+import {ProductActions} from '../product.actions';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {ProductService} from '../services/product.service';
 import {MatSnackBar} from '@angular/material';
@@ -15,7 +15,7 @@ export class ProductCreateComponent implements OnInit {
   product: FormGroup;
 
   constructor(private snackBar: MatSnackBar, private fb: FormBuilder,
-              private router: Router, private productActions: AppActions, private productService: ProductService) {
+              private router: Router, private productActions: ProductActions, private productService: ProductService) {
   }
 
   saveProduct() {

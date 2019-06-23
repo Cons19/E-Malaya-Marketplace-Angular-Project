@@ -8,8 +8,6 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  products: Product[];
-
   constructor(private db: AngularFirestore) {
   }
 
@@ -49,6 +47,6 @@ export class ProductService {
   }
 
   private getProductDoc(id: string) {
-    return this.db.doc <Product>(config.products_endpoint + '/' + id);
+    return this.db.doc <Product>(`${config.products_endpoint}/${id}`);
   }
 }

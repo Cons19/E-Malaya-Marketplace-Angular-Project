@@ -21,11 +21,14 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isAdmin$ = this.ngRedux.select(state => state.isAdmin)
+    this.isAdmin$ = this.ngRedux.select(state => state.products.isAdmin)
   }
 
   addToCart() {
-    this.cartService.addProduct(this.productInput._id);
+    this.cartService.addProduct(this.productInput._id)
+      .then(() => {
+        this.snackBar.open(`'${this.productInput.name}' has been added to cart.`, 'Dismiss', {duration: 2000});
+      });
   }
 
   deleteProduct() {
