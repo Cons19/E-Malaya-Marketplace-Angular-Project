@@ -1,13 +1,12 @@
-<mat-card class="cart-item-card">
-  <mat-card-actions>
-    <button type="button" mat-raised-button color="accent" (click)="refresh()">(Debug)Update</button>
-    <button type="button" mat-raised-button color="accent" (click)="reset()">(Debug)Reset</button>
-  </mat-card-actions>
-</mat-card>
+<app-cart-item *ngFor="let cartItem of cartItems$ | async"
+               [cartItemInput]="cartItem"
+               (cartItemRemoved)="handleItemRemoved($event)"
+></app-cart-item>
 
-<div *ngFor="let cartItem of cartItems">
-  <app-cart-item
-    [cartItemInput]="cartItem"
-    (cartItemRemoved)="handleItemRemoved($event)"
-  ></app-cart-item>
-</div>
+<ng-container *ngIf=" !(cartItems$ | async) && (isLoading$ | async)">
+  <mat-spinner style="margin: auto; align-self: center;"></mat-spinner>
+</ng-container>
+
+<ng-container *ngIf="!(cartItems$ | async) && !(isLoading$ | async)">
+  <mat-card-title style="margin: auto; text-align: center;">No items in cart</mat-card-title>
+</ng-container>

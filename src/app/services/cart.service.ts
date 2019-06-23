@@ -1,73 +1,51 @@
 import {Injectable} from '@angular/core';
-import {ProductService} from './product.service';
-import {CartItem, FullCartItem} from '../entities/cart';
+import {CartItem} from '../entities/cart';
+import {User} from '../entities/user';
+import {Observable} from 'rxjs';
+import {config} from '../app.config';
+import {AngularFirestore} from '@angular/fire/firestore';
 
+const productsPath = 'products';
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartContents: CartItem[];
+  private user: User = {
+    _id: 'QD5BMv62Nj895tuuUQ6L',
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'johndoe@email.com',
+    password: 'placebo'
+  };
 
-  constructor(private productService: ProductService) {
-    this.debugCart();
+  constructor(private db: AngularFirestore) {
   }
 
-  getContents(): FullCartItem[] {
-    const fullCartContents: FullCartItem[] = [];
-    // this.cartContents.forEach(element => {
-    //   const product: Product = this.productService.getProduct(element._id);
-    //   if (product != undefined) {
-    //   fullCartContents.push({
-    //     product: product,
-    //     quantity: element.quantity
-    //   });
-    //   } else {
-    //     throw new Error("Product not found with id " + element._id);
-    //   }
-    // });
-    return fullCartContents;
+  getContents(): Observable<CartItem[]> {
+    console.log(`retrieving cart for user '${this.user._id}'`);
+    return this.getDoc()
+      .collection(productsPath).valueChanges() as Observable<CartItem[]>;
   }
 
-  addProduct(id: string) {
-    // const index: number = this.cartContents.findIndex(item => item._id === id);
-    // if (index === -1) {
-    //   const product: Product = this.productService.getProduct(id);
-    //   if (product != undefined) {
-    //     this.cartContents.push({
-    //       _id: id,
-    //       quantity: 1
-    //     });
-    //     console.log("added product to cart: ");
-    //     console.log(product);
-    //   } else {
-    //     throw new Error('Product does not exist with id ' + id);
-    //   }
-    // }
-    // console.log(this.cartContents);
+  addProduct(id: string): Promise<void> {
+    let cartDoc = this.getDoc().collection(productsPath).doc<CartItem>(id);
+    const data: CartItem = {_id: id, quantity: 1};
+    return cartDoc.set(data);
   }
 
-  removeProduct(id: string) {
-    const index: number = this.cartContents.findIndex(item => item._id === id);
-    if (index > -1) {
-      this.cartContents.splice(index, 1);
-    }
+  removeProduct(id: string): Promise<void> {
+    return this.getDoc().collection(productsPath).doc<CartItem>(id).delete();
   }
 
   changeQuantity(id: string, quantity: number) {
-    const product: CartItem = this.cartContents.find(item => item._id === id);
-    product.quantity = quantity;
+    const data: CartItem = {_id: id, quantity: quantity};
+    return this.getDoc()
+      .collection(productsPath)
+      .doc<CartItem>(id)
+      .update(data);
   }
 
-  debugCart() {
-    // this.cartContents = [];
-    // let products: Product[] = this.productService.getProducts();
-    // this.cartContents.push({
-    //   _id: products[0]._id,
-    //   quantity: 1
-    // });
-    // this.cartContents.push({
-    //   _id: products[1]._id,
-    //   quantity: 10
-    // });
+  private getDoc() {
+    return this.db.doc(`${config.shopping_carts_endpoint}/${this.user._id}`);
   }
 }

@@ -1,5 +1,6 @@
 <mat-card class="example-card">
-  <div *ngIf="product | async as product">
+
+  <ng-container *ngIf="product$ | async as product">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{product.name}}</mat-card-title>
@@ -12,14 +13,20 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button *ngIf="isAdmin$ | async" class="updateProduct" mat-raised-button color="primary" routerLink="/portal/product-update/{{product._id}}">Update Product</button>
+      <button *ngIf="isAdmin$ | async" class="updateProduct" mat-raised-button color="primary"
+              routerLink="/portal/product-update/{{product._id}}">Update Product
+      </button>
     </mat-card-actions>
     <mat-card-actions>
-      <button mat-button (click)="addToCart()">Add to Cart</button>
+      <button mat-button (click)="addToCart(product._id, product.name)">Add to Cart</button>
     </mat-card-actions>
-  </div>
+  </ng-container>
 
-  <div *ngIf="!(product | async)">
-    <mat-card-title>Product not found</mat-card-title>
-  </div>
+  <ng-container *ngIf=" !(product$ | async) && (isLoading$ | async)">
+    <mat-spinner style="margin: auto; align-self: center;"></mat-spinner>
+  </ng-container>
+
+  <ng-container *ngIf="!(product$ | async) && !(isLoading$ | async)">
+    <mat-card-title style="margin: auto; text-align: center;">Product not found</mat-card-title>
+  </ng-container>
 </mat-card>

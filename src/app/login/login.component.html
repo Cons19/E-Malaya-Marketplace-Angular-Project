@@ -2,15 +2,15 @@
   <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
   <mat-grid-tile [colspan]="2" [rowspan]="1">
     <mat-card>
+
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title id="login">Login</mat-card-title>
         <mat-card-subtitle>Write your credentials!</mat-card-subtitle>
       </mat-card-header>
-
       <mat-card-content>
+        
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
           <div>
             <mat-form-field>
               <input matInput type="email" formControlName="email" placeholder="Email" id="email">
@@ -33,6 +33,7 @@
             <div *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
                 You must fill out the password!
             </div>
+
             <div *ngIf="loginForm.controls.password.errors?.minlength && loginForm.controls.password.touched">
                 Password must be at least 6 characters length!
             </div>
@@ -48,10 +49,7 @@
           </mat-card-actions>
           </form>
         </mat-card-content>
-
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
-
 </mat-grid-list>
-

@@ -1,12 +1,9 @@
-section div:nth-child(1), section div:nth-child(3){
+.text1 {
     color: blue;
     font-size: 50px;
+    text-align: center;
 }
- 
-section div:nth-child(1){
-    margin-top: 20px;
-}
- 
-section div:nth-child(2){
-    width: 50%;
+.container1 {
+    margin-left: 200px;
+    margin-right: 200px;
 }

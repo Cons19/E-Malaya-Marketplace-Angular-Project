@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -24,6 +23,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
@@ -43,8 +43,6 @@ import {ProductUpdateComponent} from './product-update/product-update.component'
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
-import {INITIAL_STATE} from "./app.reducer";
-
 
 @NgModule({
   declarations: [
@@ -55,7 +53,6 @@ import {INITIAL_STATE} from "./app.reducer";
     ProductDetailComponent,
     PageNotFoundComponent,
     CartDetailComponent,
-    PageNotFoundComponent,
     ProductCreateComponent,
     ProductComponent,
     ProductPipe,
@@ -70,20 +67,14 @@ import {INITIAL_STATE} from "./app.reducer";
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatGridListModule,
     MatInputModule,
-    MatButtonModule,
-    MatDividerModule,
     MatProgressBarModule,
     MatSelectModule,
     NgReduxModule, NgReduxRouterModule.forRoot(), BrowserAnimationsModule,
     MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
     MatSnackBarModule, MatCardModule, MatDividerModule, MatExpansionModule, MatCheckboxModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule, MatProgressSpinnerModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
@@ -92,7 +83,8 @@ export class AppModule {
   constructor(private ngRedux: NgRedux<AppState>,
               private devTool: DevToolsExtension,
               private ngReduxRouter: NgReduxRouter,) {
-    this.ngRedux.configureStore(rootReducer, INITIAL_STATE, [], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
+    // this.ngRedux.configureStore(rootReducer, {});
+    this.ngRedux.configureStore(rootReducer, {}, [], [devTool.isEnabled() ? devTool.enhancer() : f => f]);
     ngReduxRouter.initialize(/* args */);
   }
 }
