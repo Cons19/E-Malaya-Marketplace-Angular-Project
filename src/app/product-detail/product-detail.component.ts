@@ -27,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
     this.isLoading$ = new Observable(subscriber => {
       subscriber.next(true);
 
-      this.retrieveProducts();
+      this.retrieveProduct();
 
       setTimeout(()=>{
         subscriber.next(false);
@@ -35,7 +35,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  async retrieveProducts() {
+  async retrieveProduct() {
     // Get the id from the url
     const id = this.route.snapshot.paramMap.get('id');
     let product = <Observable<Product>>await this.productService.getProduct(id);
