@@ -14,24 +14,33 @@ import {AppState} from "../store";
 })
 export class ProductDetailComponent implements OnInit {
 
-  product: Observable<Product>;
+  product$: Observable<Product>;
   isAdmin$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
 
   constructor(private ngRedux: NgRedux<AppState>, private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) {
   }
 
   ngOnInit() {
-    this.retrieveProducts();
     this.isAdmin$ = this.ngRedux.select(state => state.products.isAdmin);
+    this.isLoading$ = new Observable(subscriber => {
+      subscriber.next(true);
+
+      this.retrieveProducts();
+
+      setTimeout(()=>{
+        subscriber.next(false);
+      }, 2000)
+    });
   }
 
   async retrieveProducts() {
     // Get the id from the url
     const id = this.route.snapshot.paramMap.get('id');
-    let products = <Observable<Product>>await this.productService.getProduct(id);
+    let product = <Observable<Product>>await this.productService.getProduct(id);
     console.log("found matching product:");
-    console.log(products);
-    this.product = products;
+    console.log(product);
+    this.product$ = product;
   }
 
   addToCart() {

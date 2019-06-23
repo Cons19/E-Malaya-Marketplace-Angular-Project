@@ -24,6 +24,7 @@ import {
   MatIconModule,
   MatMenuModule,
   MatProgressBarModule,
+  MatProgressSpinnerModule,
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
@@ -82,7 +83,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule,
     MatSnackBarModule, MatCardModule, MatDividerModule, MatExpansionModule, MatCheckboxModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule, MatProgressSpinnerModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
