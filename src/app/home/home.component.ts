@@ -23,5 +23,4 @@ export class HomeComponent implements OnInit {
     this.productActions.setLoggedIn(false);
     this.productActions.setAdmin(false);
   }
-
 }
