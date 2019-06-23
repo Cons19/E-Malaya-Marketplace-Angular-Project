@@ -4,7 +4,7 @@
   </mat-form-field> 
   <br>
   <!--  *ngIf -  isAdmin$ gets the value from the observable -->
-  <button *ngIf="isAdmin$ | async" class="createProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
+  <button id="createButton" *ngIf="isAdmin$ | async" class="createProduct" mat-raised-button color="primary" routerLink="/portal/product-create">Create Product</button>
 </div>
 <div class="container">
 
