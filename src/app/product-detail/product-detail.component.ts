@@ -6,6 +6,7 @@ import {CartService} from '../services/cart.service';
 import {Observable} from 'rxjs';
 import {NgRedux} from "@angular-redux/store";
 import {AppState} from "../store";
+import {MatSnackBar} from "@angular/material";
 
 @Component({
   selector: 'app-product-detail',
@@ -18,7 +19,7 @@ export class ProductDetailComponent implements OnInit {
   isAdmin$: Observable<boolean>;
   isLoading$: Observable<boolean>;
 
-  constructor(private ngRedux: NgRedux<AppState>, private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) {
+  constructor(private snackBar: MatSnackBar, private ngRedux: NgRedux<AppState>, private productService: ProductService, private route: ActivatedRoute, private cartService: CartService) {
   }
 
   ngOnInit() {
@@ -43,7 +44,10 @@ export class ProductDetailComponent implements OnInit {
     this.product$ = product;
   }
 
-  addToCart() {
-    // this.cartService.addProduct(this.product._id);
+  addToCart(id: string, name: string) {
+    this.cartService.addProduct(id)
+      .then(() => {
+        this.snackBar.open(`'${name}' has been added to cart.`, 'Dismiss', {duration: 2000});
+      });
   }
 }
