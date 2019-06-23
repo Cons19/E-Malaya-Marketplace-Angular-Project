@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.retrieveProducts();
-    this.isAdmin$ = this.ngRedux.select(state => state.isAdmin);
+    this.isAdmin$ = this.ngRedux.select(state => state.products.isAdmin);
   }
 
   async retrieveProducts() {

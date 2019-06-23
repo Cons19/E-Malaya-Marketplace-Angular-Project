@@ -21,7 +21,7 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isAdmin$ = this.ngRedux.select(state => state.isAdmin)
+    this.isAdmin$ = this.ngRedux.select(state => state.products.isAdmin)
   }
 
   addToCart() {
