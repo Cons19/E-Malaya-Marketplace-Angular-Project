@@ -25,30 +25,25 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.loginForm);
-    
     if(this.loginForm.valid) {
       this.productActions.setLoggedIn(true);
       if(this.loginForm.value.email === 'admin@admin' && this.loginForm.value.password === 'admin123') {
         this.productActions.setAdmin(true);
-        console.log("First");
+        // console.log("First");
         this.adminService.login().subscribe(result => {
-        console.log("Third");
+        // console.log("Third");
         this.router.navigate(['portal/product-list']);
         });
-        console.log("Second");
+        // console.log("Second");
       }
       else {
-        console.log("First");
         this.authService.login().subscribe(result => {
-          console.log("Third");
           this.router.navigate(['portal/product-list']);
         });
-        console.log("Second");
       }
     }
     else {
-
+      console.log("Invalid form");
     }
   }
-
 }

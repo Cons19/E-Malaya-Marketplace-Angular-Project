@@ -6,15 +6,10 @@ import { tap, delay } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AdminService {
-
   isLoggedIn: boolean = false;
-
-  // store the URL so we can redirect after logging in
-  redirectUrl: string;
+  redirectUrl: string; // store the URL so we can redirect after logging in
 
   login(): Observable<boolean> {
-    // here, we want to call a webservice to log in
-    
     return of(true).pipe(
       delay(1000),
       tap(val => this.isLoggedIn = true)

@@ -17,9 +17,7 @@ export class AdminGuard implements CanActivate {
     }
     
     this.adminService.redirectUrl = state.url;
-
     this.router.navigate(['../home/login']);
-    return false; // true means yes you are allowed acces, false means no
+    return false; // true - allow access, false - don't allow access
   }
-  
 }

@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LoginComponent} from './login/login.component';
@@ -55,7 +54,6 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     ProductDetailComponent,
     PageNotFoundComponent,
     CartDetailComponent,
-    PageNotFoundComponent,
     ProductCreateComponent,
     ProductComponent,
     ProductPipe,
@@ -70,13 +68,7 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule, FormsModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatGridListModule,
     MatInputModule,
-    MatButtonModule,
-    MatDividerModule,
     MatProgressBarModule,
     MatSelectModule,
     NgReduxModule, NgReduxRouterModule.forRoot(), BrowserAnimationsModule,
