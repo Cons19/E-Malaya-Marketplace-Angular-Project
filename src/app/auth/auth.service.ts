@@ -6,18 +6,18 @@ import { tap, delay } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn: boolean;
+  isLoggedIn: boolean = false;
   redirectUrl: string;
   
   login(): Observable<boolean> {
-    console.log(" login this.isLoggedIn " + this.isLoggedIn)
+    console.log(" login this.isLoggedIn " + this.isLoggedIn);
     return of(true).pipe(
       delay(1000),
       tap(val => this.isLoggedIn = true)
     );
   }
   logout(): void {
-    console.log(" logout this.isLoggedIn " + this.isLoggedIn)
+    console.log(" logout this.isLoggedIn " + this.isLoggedIn);
     this.isLoggedIn = false;
   }
 }
