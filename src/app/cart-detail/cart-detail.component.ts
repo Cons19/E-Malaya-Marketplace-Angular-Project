@@ -11,47 +11,46 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./cart-detail.component.scss']
 })
 export class CartDetailComponent implements OnInit, OnDestroy {
-  cartItems$: CartObservable;
-  cartSubscriptions: Subscription[];
-  isLoading$: Observable<boolean>;
+  cartItems: FullCartItem[] = [];
+  cartSubscriptions: Subscription[] = [];
+  isLoading: boolean;
 
   constructor(private snackBar: MatSnackBar, private cartService: CartService, private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.isLoading$ = new Observable(subscriber => {
+    let isLoading$ = new Observable<boolean>(subscriber => {
       subscriber.next(true);
 
-      this.cartSubscriptions = [];
-      this.cartSubscriptions.push(this.cartService.getContents().subscribe(cartItemsRes => {
-
-        console.log(`Retrieved items:`);
-        console.log(cartItemsRes);
-
-        this.cartItems$ = new CartObservable(subscriber => {
-
-          cartItemsRes.forEach(cartItem => {
-
-            console.log("Retrieving product for cart item:");
-            console.log(cartItem);
-
-            this.cartSubscriptions.push(this.productService.getProduct(cartItem._id).subscribe(product => {
-
-              console.log("Added product to cart:");
-              console.log(product);
-
-              this.cartItems$.addCartItem({product: product, quantity: cartItem.quantity});
-
-              subscriber.next(this.cartItems$.getCart());
-            }));
-          });
-        });
-      }));
-
-      setTimeout(()=>{
+      setTimeout(() => {
         subscriber.next(false);
       }, 2000)
     });
+
+    this.cartSubscriptions.push(isLoading$.subscribe((value) => {
+      this.isLoading = value;
+    }));
+
+    this.cartSubscriptions.push(this.cartService.getContents().subscribe(cartItemsRes => {
+
+      console.log(`Retrieved items:`);
+      console.log(cartItemsRes);
+      this.cartItems = [];
+
+      cartItemsRes.forEach(cartItem => {
+
+        console.log("Retrieving product for cart item:");
+        console.log(cartItem);
+
+        this.cartSubscriptions.push(this.productService.getProduct(cartItem._id).subscribe(product => {
+
+          console.log("Added product to cart:");
+          console.log(product);
+
+          this.cartItems.push({product: product, quantity: cartItem.quantity});
+        }));
+      });
+    }));
   };
 
   ngOnDestroy(): void {
@@ -68,18 +67,6 @@ export class CartDetailComponent implements OnInit, OnDestroy {
       .then(() => {
         this.snackBar.open(`'${cartItem.product.name}' has been removed`, 'Dismiss', {duration: 2000});
       });
-  }
-}
-
-class CartObservable extends Observable<FullCartItem[]> {
-  private fullCartItems: FullCartItem[] = [];
-
-  addCartItem(cartItem: FullCartItem) {
-    this.fullCartItems.push(cartItem);
-  }
-
-  getCart() {
-    return this.fullCartItems;
   }
 }
 
