@@ -2,3 +2,11 @@
                [cartItemInput]="cartItem"
                (cartItemRemoved)="handleItemRemoved($event)"
 ></app-cart-item>
+
+<ng-container *ngIf=" !(cartItems$ | async) && (isLoading$ | async)">
+  <mat-spinner style="margin: auto; align-self: center;"></mat-spinner>
+</ng-container>
+
+<ng-container *ngIf="!(cartItems$ | async) && !(isLoading$ | async)">
+  <mat-card-title style="margin: auto; text-align: center;">No items in cart</mat-card-title>
+</ng-container>

@@ -13,36 +13,45 @@ import {MatSnackBar} from '@angular/material';
 export class CartDetailComponent implements OnInit, OnDestroy {
   cartItems$: CartObservable;
   cartSubscriptions: Subscription[];
+  isLoading$: Observable<boolean>;
 
   constructor(private snackBar: MatSnackBar, private cartService: CartService, private productService: ProductService) {
   }
 
   ngOnInit() {
-    this.cartSubscriptions = [];
-    this.cartSubscriptions.push(this.cartService.getContents().subscribe(cartItemsRes => {
+    this.isLoading$ = new Observable(subscriber => {
+      subscriber.next(true);
 
-      console.log(`Retrieved items:`);
-      console.log(cartItemsRes);
+      this.cartSubscriptions = [];
+      this.cartSubscriptions.push(this.cartService.getContents().subscribe(cartItemsRes => {
 
-      this.cartItems$ = new CartObservable(subscriber => {
+        console.log(`Retrieved items:`);
+        console.log(cartItemsRes);
 
-        cartItemsRes.forEach(cartItem => {
+        this.cartItems$ = new CartObservable(subscriber => {
 
-          console.log("Retrieving product for cart item:");
-          console.log(cartItem);
+          cartItemsRes.forEach(cartItem => {
 
-          this.cartSubscriptions.push(this.productService.getProduct(cartItem._id).subscribe(product => {
+            console.log("Retrieving product for cart item:");
+            console.log(cartItem);
 
-            console.log("Added product to cart:");
-            console.log(product);
+            this.cartSubscriptions.push(this.productService.getProduct(cartItem._id).subscribe(product => {
 
-            this.cartItems$.addCartItem({product: product, quantity: cartItem.quantity});
+              console.log("Added product to cart:");
+              console.log(product);
 
-            subscriber.next(this.cartItems$.getCart());
-          }));
+              this.cartItems$.addCartItem({product: product, quantity: cartItem.quantity});
+
+              subscriber.next(this.cartItems$.getCart());
+            }));
+          });
         });
-      });
-    }));
+      }));
+
+      setTimeout(()=>{
+        subscriber.next(false);
+      }, 2000)
+    });
   };
 
   ngOnDestroy(): void {
