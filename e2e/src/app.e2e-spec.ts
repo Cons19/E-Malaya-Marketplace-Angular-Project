@@ -6,7 +6,7 @@ describe('workspace-project App', () => {
 
   beforeEach(() => {
     page = new AppPage();
-  });
+  }); 
 
   it('1.0: should have the login name on login component', () => {
     browser.get('../home/login');
