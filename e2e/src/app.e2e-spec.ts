@@ -6,7 +6,7 @@ describe('workspace-project App', () => {
 
   beforeEach(() => {
     page = new AppPage();
-  });
+  }); 
 
   it('1.0: should have the login name on login component', () => {
     browser.get('../home/login');
@@ -103,7 +103,6 @@ describe('workspace-project App', () => {
     expect(productItemName).toEqual('TITLE OF THE PRODUCT 1');
     expect(productItemDesc).toEqual('Description: Description of the product 1');
     expect(productItemPrice).toEqual('Price: 153');
-    
   });
 
   afterEach(async () => {

@@ -20,8 +20,6 @@ describe('CartService', () => {
     const product: Product = TestBed.get(ProductService).getProducts()[0];
 
     service.addProduct(product._id);
-
-
     let content: FullCartItem = service.getContents().find(thatProduct => thatProduct.product === product);
     expect(content.product).toBe(product);
   });
@@ -58,15 +56,11 @@ describe('CartService', () => {
     const product: Product = TestBed.get(ProductService).getProducts()[0];
 
     service.addProduct(product._id);
-
-
     let content: FullCartItem = service.getContents().find(thatProduct => thatProduct.product === product);
     expect(content.product).toBe(product);
 
     service.removeProduct(product._id);
-
     content = service.getContents().find(thatProduct => thatProduct.product === product);
-
     expect(content).toBeUndefined();
   });
 
