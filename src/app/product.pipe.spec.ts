@@ -13,7 +13,12 @@ describe('ProductPipe', () => {
     console.log("inside describe");
     beforeEach(() => {
         console.log("inside before each");
-        TestBed.configureTestingModule({});
+        TestBed.configureTestingModule({
+        declarations: [
+          ProductPipe
+        ],
+      });
+
     });
   
     it('should return a list with 4 products, if the input is an empty string', () => {
