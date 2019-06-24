@@ -22,14 +22,12 @@ describe('ProductPipe', () => {
     });
   
     it('should return a list with 4 products, if the input is an empty string', () => {
-        // 1.Arrange  2.Act  3.Assert
         let result = pipe.transform(products, '');
         expect(result.length).toBe(4);
     });
 
     it('should return a list with 0 products, if the input is not found inside the title', () => {
         let result = pipe.transform(products, 'NO Title');
-        // let result = pipe.transform(products, 'name');
         expect(result.length).toBe(0);
     });
 });

@@ -2,10 +2,7 @@ import {ProductState} from './store';
 import {tassign} from 'tassign';
 import {ProductActions} from './product.actions';
 
-// const productService = new ProductService();
-const INITIAL_STATE: ProductState = {isLoggedIn: false, isAdmin: false
-  // , products: productService.products
-};
+const INITIAL_STATE: ProductState = {isLoggedIn: false, isAdmin: false};
 
 export function productReducer(state: ProductState = INITIAL_STATE, action: any) {
   switch (action.type) {

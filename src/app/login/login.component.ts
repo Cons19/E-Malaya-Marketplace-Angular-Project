@@ -12,7 +12,6 @@ import {ProductActions} from '../product.actions';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
   constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService, private adminService: AdminService, private productActions: ProductActions) {
   }
 
@@ -28,6 +27,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.loginForm);
     if (this.loginForm.valid) {
+
       this.authService.login().subscribe(result => {
         this.productActions.setLoggedIn(true);
 

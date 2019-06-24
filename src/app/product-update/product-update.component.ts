@@ -39,7 +39,7 @@ export class ProductUpdateComponent implements OnInit {
       _id: [''],
       name: [''],
       description: [''],
-      price: [''] // []  for number ???
+      price: [''] 
     });
 
     const id = this.route.snapshot.paramMap.get('id');

@@ -40,7 +40,6 @@ export class RegisterComponent implements OnInit {
   ];
 
   registerForm: FormGroup;
-  submitted = false;
   constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -62,7 +61,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() : void  {
     console.log(this.registerForm);
-    this.submitted = true;
     if(this.registerForm.valid) {
         this.router.navigate(['../home/login']);
     }
