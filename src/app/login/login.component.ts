@@ -34,13 +34,12 @@ export class LoginComponent implements OnInit {
         if (this.loginForm.value.email === 'admin@admin' && this.loginForm.value.password === 'admin123') {
           console.log('logging as admin');
 
-          // console.log("First");
           this.adminService.login().subscribe(result => {
             this.productActions.setAdmin(true);
-            // console.log("Third");
+
             this.router.navigate(['portal/product-list']);
           });
-          // console.log("Second");
+
         } else {
           console.log('logging as user');
           this.router.navigate(['portal/product-list']);

@@ -8,14 +8,7 @@ constructor (private ngRedux: NgRedux<AppState>) {}
 
   static LOG_IN: string = 'LOG_IN'; 
   static ADMIN: string = 'ADMIN'; 
-  // static CREATE_PRODUCT: string = 'CREATE_PRODUCT';
   
-  // createProduct(product: Product):void {
-  //   this.ngRedux.dispatch({
-  //     type: ProductActions.CREATE_PRODUCT,
-  //     payload: product
-  //   });
-  // }
   setLoggedIn(isLoggedIn: boolean): void {
     console.log(isLoggedIn);
     this.ngRedux.dispatch({
@@ -31,4 +24,13 @@ constructor (private ngRedux: NgRedux<AppState>) {}
       payload: isAdmin
     })
   }
+
+  // static CREATE_PRODUCT: string = 'CREATE_PRODUCT';
+  
+  // createProduct(product: Product):void {
+  //   this.ngRedux.dispatch({
+  //     type: ProductActions.CREATE_PRODUCT,
+  //     payload: product
+  //   });
+  // }
 }
